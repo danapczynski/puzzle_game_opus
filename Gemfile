@@ -22,6 +22,7 @@ end
 
 group :test, :development do
   gem "rspec-rails", "~> 2.4"
+  gem "shoulda-matchers", "~> 2.4.0"
 end
 
 gem 'jquery-rails'
