@@ -2,6 +2,8 @@ Opus::Application.routes.draw do
 
   root :to => 'static_pages#index'
   resources :users, only: [:new, :create, :show]
+  resources :sessions, only: [:create]
+  match '/signout' => 'sessions#destroy'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

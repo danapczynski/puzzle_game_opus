@@ -1,3 +1,14 @@
 <h1>index.html.erb</h1>
 
-<%= link_to "Create a user", new_user_path %>
+<% if logged_in? %>
+  Welcome, <%= link_to current_user.name, user_path(current_user), :id => 'user_greeting' %>!
+  <%= link_to "Sign Out", '/signout', :method => :delete, :id => 'signout' %>
+<% else %>
+  <%= link_to "Create a user", new_user_path %>
+  <%= form_tag sessions_path, id: 'login_form' do %>
+    <%= text_field_tag(:email, nil, placeholder: "Email") %>
+    <%= text_field_tag(:password, nil, placeholder: "Password", type: 'password') %>
+    <%= submit_tag("Sign In", :id => 'sign_in') %>
+    <%= link_to 'Sign Up', '/users/new', class: 'btn btn-success'%>
+  <% end %>
+<% end %>
