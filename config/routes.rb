@@ -1,6 +1,7 @@
 Opus::Application.routes.draw do
 
   root :to => 'static_pages#index'
+  resources :users, only: [:new]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
