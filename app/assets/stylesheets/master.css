@@ -6,3 +6,7 @@ input {
   width: 960px;
   margin: 0 auto;
 }
+
+.errors {
+  color: red;
+}
