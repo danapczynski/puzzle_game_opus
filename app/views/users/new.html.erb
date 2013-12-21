@@ -1,11 +1,11 @@
-<%= form_for :user do |t| %>
+<%= form_for @user do |t| %>
   <%= t.label :name %>
   <%= t.text_field :name %>
   <%= t.label :email %>
   <%= t.text_field :email %>
   <%= t.label :password %>
-  <%= t.text_field :password %>
+  <%= t.password_field :password %>
   <%= t.label :password_confirmation %>
-  <%= t.text_field :password_confirmation %>
+  <%= t.password_field :password_confirmation %>
   <%= t.submit %>
 <% end %>
