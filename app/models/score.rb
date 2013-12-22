@@ -5,4 +5,6 @@ class Score < ActiveRecord::Base
   belongs_to :user
   belongs_to :level
 
+  attr_accessible :completion_time, :level_id, :user_id
+
 end

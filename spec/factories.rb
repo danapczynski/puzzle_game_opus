@@ -11,6 +11,7 @@ FactoryGirl.define do
   end
 
   factory :score do
+    completion_time { 1 + rand(100) }
     user
     level
   end
