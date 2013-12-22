@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(:version => 20131222092528) do
 
   create_table "blocks", :force => true do |t|
     t.string   "nickname"
-    t.string   "link_to_shape"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.text     "shape"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "blocks_levels", :id => false, :force => true do |t|
@@ -26,9 +26,8 @@ ActiveRecord::Schema.define(:version => 20131222092528) do
   end
 
   create_table "levels", :force => true do |t|
-    t.integer  "completion_time"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "scores", :force => true do |t|
