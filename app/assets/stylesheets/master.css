@@ -2,11 +2,58 @@ input {
   display: block;
 }
 
+.errors {
+  color: red;
+}
+
 .container {
-  width: 960px;
+  position: relative;
+  width: 962px;
   margin: 0 auto;
 }
 
-.errors {
-  color: red;
+.object {
+  border-spacing: 0;
+  position: relative;
+  top: 1px;
+  left: 1px;
+}
+
+.object td {
+  height: 28px;
+  width: 28px;
+}
+
+.game-block .filled {
+  background: gray;
+}
+
+#solution .filled {
+  background: #000;
+}
+
+#solution {
+  z-index: -10;
+  top: 91px;
+  left: 91px;
+}
+
+#game-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-spacing: 0;
+  border: 1px solid #FFF;
+  z-index: -20;
+}
+
+.grid-cell {
+  padding: 0;
+  height: 28px;
+  width: 28px;
+  border: 1px solid #FFF;
+}
+
+.game-block.active .filled.fit {
+  background-color: #FFF !important;
 }

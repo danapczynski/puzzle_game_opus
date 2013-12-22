@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131222065714) do
+ActiveRecord::Schema.define(:version => 20131222092528) do
+
+  create_table "blocks", :force => true do |t|
+    t.string   "nickname"
+    t.string   "link_to_shape"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "blocks_levels", :force => true do |t|
+    t.integer  "block_id"
+    t.integer  "level_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "levels", :force => true do |t|
     t.integer  "completion_time"
