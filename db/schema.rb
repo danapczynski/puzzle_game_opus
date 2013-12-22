@@ -20,11 +20,9 @@ ActiveRecord::Schema.define(:version => 20131222092528) do
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "blocks_levels", :force => true do |t|
-    t.integer  "block_id"
-    t.integer  "level_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "blocks_levels", :id => false, :force => true do |t|
+    t.integer "block_id"
+    t.integer "level_id"
   end
 
   create_table "levels", :force => true do |t|

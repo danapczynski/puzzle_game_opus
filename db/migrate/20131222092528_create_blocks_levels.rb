@@ -1,9 +1,8 @@
 class CreateBlocksLevels < ActiveRecord::Migration
   def change
-    create_table :blocks_levels do |t|
+    create_table :blocks_levels, :id => false, :force => true do |t|
       t.references :block
       t.references :level
-      t.timestamps
     end
   end
 end
