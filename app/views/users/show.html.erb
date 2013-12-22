@@ -1,3 +1,14 @@
 <h1>show.html.erb</h1>
 
-<%= @user %>
+<p>Welcome, <%= @user.name %>!</p>
+
+<ul id='level_selection'>
+  <% if @user.new_player? %>
+    <li><%= link_to 'Start a new game!', '#' %></li>
+  <% else %>
+    <li><%= link_to 'Continue your game!', '#' %></li>
+    <% @user.levels.each do |level| %>
+      <li><%= link_to "Level #{level.id}", '#' %></li>
+    <% end %>
+  <% end %>
+</ul>
