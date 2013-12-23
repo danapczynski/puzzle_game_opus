@@ -1,0 +1,11 @@
+<h1>Level <%= @level.level_number %></h1>
+
+<h2>Blocks:</h2>
+<div class='blocks'>
+<% @blocks.each do |block| %>
+  <%= block.read_shape %>
+  <br>
+<% end %>
+</div>
+<h2>Solution:</h2>
+<%= @solution.read_shape %>

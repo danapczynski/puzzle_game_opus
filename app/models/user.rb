@@ -14,10 +14,12 @@ class User < ActiveRecord::Base
   end
 
   def last_level_completed
+    return nil if new_player?
     levels.last
   end
 
   def next_level
+    return Level.find_by_level_number(1) if new_player?
     Level.find_by_level_number(last_level_completed.level_number + 1)
   end
 end

@@ -11,6 +11,10 @@ class Level < ActiveRecord::Base
     end
   end
 
+  def to_param
+    level_number
+  end
+
   def solution
     solutions[0]
   end
