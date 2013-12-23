@@ -2,21 +2,30 @@ class Block < ActiveRecord::Base
   validates :nickname, presence: true
   validates :shape, presence: true
   has_and_belongs_to_many :levels
-  before_create :populate_shape
+  before_validation :populate_shape
 
   attr_accessible :nickname
-
-  def populate_shape
-    f = File.open('public/blocks/' + nickname + '.html')
-    shape_html = ''
-    f.each do |line|
-      shape_html += line
-    end
-    self.shape = shape_html
-  end
 
   def read_shape
     self.shape.html_safe
   end
+
+  private
+
+    def test_html_existence
+      return false unless nickname && File.exist?(filename = 'public/blocks/' + nickname + '.html')
+      filename
+    end
+
+    def populate_shape
+      filename = test_html_existence
+      return unless filename
+      f = File.open(filename)
+      shape_html = ''
+      f.each do |line|
+        shape_html += line
+      end
+      self.shape = shape_html
+    end
 
 end

@@ -15,5 +15,9 @@ FactoryGirl.define do
     user
     level
   end
+
+  factory :block do
+    nickname 't_block'
+  end
 end
 
