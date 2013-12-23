@@ -4,7 +4,7 @@ class Block < ActiveRecord::Base
   has_and_belongs_to_many :levels
   before_validation :populate_shape
 
-  attr_accessible :nickname
+  attr_accessible :nickname, :type
 
   def read_shape
     self.shape.html_safe

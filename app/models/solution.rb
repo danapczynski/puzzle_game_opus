@@ -1,0 +1,3 @@
+class Solution < Block
+
+end

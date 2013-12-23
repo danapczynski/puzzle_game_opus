@@ -5,7 +5,7 @@ class LevelSeed
   end
 
   def self.associate_blocks
-    LevelSeed.level_blocks(1, ['t_block', 'submarine', 'l_block'])
+    LevelSeed.level_blocks(1, ['solution1', 't_block', 'submarine', 'l_block'])
   end
 
   private
@@ -21,6 +21,7 @@ class BlockSeed
     Block.create(nickname: 't_block')
     Block.create(nickname: 'submarine')
     Block.create(nickname: 'l_block')
+    Solution.create(nickname: 'solution1')
   end
 end
 
