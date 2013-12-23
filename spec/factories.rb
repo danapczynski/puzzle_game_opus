@@ -19,5 +19,9 @@ FactoryGirl.define do
   factory :block do
     nickname 't_block'
   end
+
+  factory :solution do
+    nickname 'solution1'
+  end
 end
 
