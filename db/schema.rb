@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131223180626) do
+ActiveRecord::Schema.define(:version => 20131223192934) do
 
   create_table "blocks", :force => true do |t|
     t.string   "nickname"
@@ -27,8 +27,9 @@ ActiveRecord::Schema.define(:version => 20131223180626) do
   end
 
   create_table "levels", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "level_number"
   end
 
   create_table "scores", :force => true do |t|

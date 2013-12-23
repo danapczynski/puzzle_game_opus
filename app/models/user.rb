@@ -18,6 +18,6 @@ class User < ActiveRecord::Base
   end
 
   def next_level
-    Level.find(last_level_completed.id + 1)
+    Level.find_by_level_number(last_level_completed.level_number + 1)
   end
 end

@@ -25,7 +25,7 @@ describe User do
 
   context 'after completing a level' do
     before(:each) do
-      FactoryGirl.create(:score, user: user, level: (FactoryGirl.create(:level, id: 1)))
+      FactoryGirl.create(:score, user: user, level: (FactoryGirl.create(:level)))
     end
 
     describe '#new_player?' do
@@ -40,13 +40,13 @@ describe User do
       end
 
       it 'should return the completed level' do
-        expect(user.last_level_completed).to eq Level.find(1)
+        expect(user.last_level_completed).to eq Level.find_by_level_number(1)
       end
     end
 
     describe '#next_level' do
       before(:each) do
-        FactoryGirl.create(:level, id: 2)
+        FactoryGirl.create(:level, level_number: 2)
       end
 
       it 'should return a Level object' do

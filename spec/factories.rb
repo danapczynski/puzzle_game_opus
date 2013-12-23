@@ -7,7 +7,7 @@ FactoryGirl.define do
   end
 
   factory :level do
-
+    level_number 1
   end
 
   factory :score do
