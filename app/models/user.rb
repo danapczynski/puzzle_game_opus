@@ -10,6 +10,14 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
 
   def new_player?
-    self.levels.empty?
+    levels.empty?
+  end
+
+  def last_level_completed
+    levels.last
+  end
+
+  def next_level
+    Level.find(last_level_completed.id + 1)
   end
 end
