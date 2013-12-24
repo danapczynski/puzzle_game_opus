@@ -43,7 +43,7 @@ input {
   top: 0;
   left: 0;
   border-spacing: 0;
-  border: 1px solid #FFF;
+  border: 1px solid #222;
   z-index: -20;
 }
 
@@ -51,7 +51,7 @@ input {
   padding: 0;
   height: 28px;
   width: 28px;
-  border: 1px solid #FFF;
+  border: 1px solid #222;
 }
 
 .game-block.active .filled.fit {
