@@ -1,4 +1,5 @@
 $(function() {
+  solutionRect = solutionLocation()
   objectify()
   activeBehavior()
   populateGrid()  
@@ -96,8 +97,8 @@ var gameBlock = function(htmlObject){
       var rect = this.getRect()
       for (var x=0; x < rect.length; x++) {
         filled[x].className = 'filled'
-        for (var y=0; y < solutionLocation.length; y++) {
-          if ((rect[x].top === solutionLocation[y].top) && (rect[x].left === solutionLocation[y].left)) {
+        for (var y=0; y < solutionRect.length; y++) {
+          if ((rect[x].top === solutionRect[y].top) && (rect[x].left === solutionRect[y].left)) {
             filled[x].className += ' fit'
           }
         }
@@ -165,9 +166,11 @@ var activeBehavior = function(){
 var solutionLocation = function() {
   var rect = []
   var filled = $('#solution .filled')
-  for (x=0; x < filled.length; x++) {
+  for (var x=0; x < filled.length; x++) {
     rect.push(filled[x].getBoundingClientRect());
   }
   return rect
-}()
+}
+
+
 
