@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
 
+  def new
+    render layout: false
+  end
+
   def create
     if User.find_by_email(params[:email])
       @user = User.find_by_email(params[:email])

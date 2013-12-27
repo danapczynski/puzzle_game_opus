@@ -1,18 +1,10 @@
 <h1 id='game-title'>Daedalus Opus</h1>
-
-<div id='sign-in-form' class='form-div'>
+<div id='container'>
   <% if logged_in? %>
     <h3>Welcome, <%= link_to current_user.name, user_path(current_user), :id => 'user_greeting' %>!</h3>
     <%= link_to "Sign Out", '/signout', :method => :delete, :id => 'signout' %>
   <% else %>
-    <h3>Sign In</h3>
-    <%= form_tag sessions_path, id: 'login_form' do %>
-      <%= label_tag(:email, 'Email:') %>
-      <%= text_field_tag(:email, nil) %>
-      <%= label_tag(:password, 'Password:') %>
-      <%= text_field_tag(:password, nil, type: 'password') %>
-    <% end %>
-    <%= link_to "Done", '/login', id: 'sign-in-button', class: 'button' %>
-    <%= link_to "Create a new user", new_user_path, id: 'create-user-button', class: 'button' %>
+    <%= link_to "Load an Existing Account", new_session_path, remote: true, id: 'main_menu_login',class: 'button' %>
+    <%= link_to "Create a New Account", new_user_path, remote: true, id: 'main_menu_create',class: 'button' %>
   <% end %>
-</div>  
+</div>
