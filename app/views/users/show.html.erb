@@ -1,12 +1,15 @@
+<h1 id='game-title'>Daedalus Opus</h1>
 <p>Welcome, <%= @user.name %>!</p>
 
 <ul id='level_selection'>
   <% if @user.new_player? %>
-    <li><%= link_to 'Start a new game!', @user.next_level %></li>
+    <li><%= link_to 'Start a new game!', @user.next_level, class: 'button' %></li>
   <% else %>
-    <li><%= link_to 'Continue your game!', @user.next_level %></li>
+    <li><%= link_to 'Continue your game!', @user.next_level, class: 'button' %></li>
     <% @user.levels.each do |level| %>
       <li><%= link_to "Level #{level.id}", level %></li>
     <% end %>
   <% end %>
+  <%= link_to "Sign Out", '/signout', :method => :delete, :id => 'signout', class: 'button' %>  
+  <% else %>
 </ul>

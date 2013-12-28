@@ -98,10 +98,22 @@ body {
   font-weight: bold;
 }
 
+#main_menu, #main p {
+  margin: 0 auto;
+  width: 400px;
+}
+
 .errors {
   margin: 20px 20px 0 20px;
   font-size: 12pt;
   list-style: none;
+}
+
+#level_selection {
+  width: 450px;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
 }
 
 /* FORMS */
