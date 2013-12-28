@@ -1,8 +1,11 @@
 $(function() {
+  position_blocks()    // See level-specific JS file 
+  position_solution()  // See level-specific JS file
   solutionRect = solutionLocation()
   objectify()
   activeBehavior()
-  populateGrid()  
+  populateGrid()
+  resizableSolution() 
 });
 
 var activeBlock = []
@@ -12,12 +15,12 @@ var allBlocks = []
 
 var gameBlock = function(htmlObject){
   var element = htmlObject
-  var filled = element.getElementsByClassName('filled')
+  var filled = $(element).children().children().children('.filled')
   var colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange']
   var activeColor = colors[Math.floor(((Math.random() * colors.length)))]
   var rotDeg = 0
-  var hPos = 1
-  var vPos = 1
+  var hPos = $(element).offset().left
+  var vPos = $(element).offset().top
   var home = null
   var rect = null
 
@@ -38,16 +41,24 @@ var gameBlock = function(htmlObject){
       element.style['-ms-transform']=('rotate(' + rotation + 'deg)')
     },
     moveRight: function(){
-      element.style['left'] = ((hPos += 30) + 'px');
+      $(element).animate({
+        left: "+=30"
+      }, 0);
     },
     moveLeft: function(){
-      element.style['left'] = ((hPos -= 30) + 'px');
+      $(element).animate({
+        left: "-=30"
+      }, 0);
     },
     moveUp: function(){
-      element.style['top'] = ((vPos -= 30) + 'px');
+      $(element).animate({
+        top: "-=30"
+      }, 0);
     },
     moveDown: function(){
-      element.style['top'] = ((vPos += 30) + 'px');
+      $(element).animate({
+        top: "+=30"
+      }, 0);
     },
     toggleColor: function(){
       for (var x = 0; x < filled.length; x++) {
@@ -61,7 +72,7 @@ var gameBlock = function(htmlObject){
     },
     deactivate: function(){
       element.className = 'object game-block'
-      element.style['z-index'] = 0
+      element.style['z-index'] = 2
       activeBlock = []
       this.toggleColor()
     },
@@ -88,18 +99,18 @@ var gameBlock = function(htmlObject){
     },
     getRect: function() {
       var rect = []
-      for (x=0; x < filled.length; x++) {
-        rect.push(filled[x].getBoundingClientRect());
-      }
+      filled.each(function(){
+        rect.push([$(this).offset().left, $(this).offset().top])
+      })
       return rect
     },
     compareSolution: function() {
       var rect = this.getRect()
       for (var x=0; x < rect.length; x++) {
-        filled[x].className = 'filled'
+        $(filled[x]).attr('class', 'filled')
         for (var y=0; y < solutionRect.length; y++) {
-          if ((rect[x].top === solutionRect[y].top) && (rect[x].left === solutionRect[y].left)) {
-            filled[x].className += ' fit'
+          if (rect[x][0] === solutionRect[y][0] && rect[x][1] === solutionRect[y][1]) {
+            $(filled[x]).addClass('fit')
           }
         }
       }
@@ -165,12 +176,17 @@ var activeBehavior = function(){
 
 var solutionLocation = function() {
   var rect = []
+  var index = 0
   var filled = $('#solution .filled')
-  for (var x=0; x < filled.length; x++) {
-    rect.push(filled[x].getBoundingClientRect());
-  }
+  filled.each(function(){
+    rect.push([$(this).offset().left, $(this).offset().top])
+  })
   return rect
 }
 
-
+var resizableSolution = function() {
+  $(window).resize(function(){
+    solutionRect = solutionLocation()
+  })
+}
 

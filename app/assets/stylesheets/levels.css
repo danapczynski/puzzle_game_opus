@@ -1,13 +1,26 @@
+#level_number {
+  position: absolute;
+  text-align: center;
+  top: 10px;
+  left: 1%;
+  right: 1%;
+}
+
 .object {
   border-spacing: 0;
   position: relative;
-  top: 1px;
-  left: 1px;
+  top: 31px;
+  left: 31px;
 }
 
 .object td {
   height: 28px;
   width: 28px;
+}
+
+.game-block {
+  z-index: 2;
+  position: absolute;
 }
 
 .game-block .filled {
@@ -19,9 +32,10 @@
 }
 
 #solution {
-  z-index: -10;
-  top: 91px;
-  left: 91px;
+  top: 1px;
+  left: 211px;
+  z-index: 1;
+  position: absolute;
 }
 
 #game-grid {
