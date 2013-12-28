@@ -33,6 +33,10 @@ body {
   border-radius: 15px;
   border: 1px solid #880000;
   margin: 0 auto;
+  box-shadow: 1px 0 1px 1px #330000,
+              0 1px 1px 1px #330000,
+              0 -1px 1px 1px #330000,
+              -1px 0 1px 1px #330000;
 }
 
 #matrix {
@@ -64,7 +68,7 @@ body {
 }
 
 #left_purple {
-  border-bottom: 4px solid #9900CC;
+  border-bottom: 4px solid #000099;
   height: 4px;
 }
 
@@ -74,7 +78,7 @@ body {
 }
 
 #right_purple {
-  border-bottom: 4px solid #9900CC;
+  border-bottom: 4px solid #000099;
   height: 4px;
 }
 

@@ -3,7 +3,7 @@
 
 <ul id='level_selection'>
   <% if @user.new_player? %>
-    <li><%= link_to 'Start a new game!', @user.next_level, class: 'button' %></li>
+    <li><%= link_to 'Start a new game', @user.next_level, class: 'button' %></li>
   <% else %>
     <li><%= link_to 'Continue your game!', @user.next_level, class: 'button' %></li>
     <% @user.levels.each do |level| %>
