@@ -9,18 +9,20 @@ class SessionsController < ApplicationController
       @user = User.find_by_email(params[:email])
       if @user.authenticate(params[:password])
         login(@user)
+        redirect_to root_path
       else
         @errors = 'Incorrect email/password combination. Please try again.'
+        render 'new', layout: 'application'
       end
     else
-      @errors = "We don't have an account registered to #{params[:email]}. Perhaps you should create one."
+      @errors = "We don't have an account registered to that email address. Please try again."
+      render 'new', layout: 'application'
     end
-    render 'static_pages/index'
   end
 
   def destroy
     session.clear
-    render 'static_pages/index'
+    redirect_to root_path
   end
 
 end

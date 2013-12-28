@@ -5,7 +5,7 @@
     <%= text_field_tag(:email, nil) %>
     <%= label_tag(:password, 'Password:') %>
     <%= text_field_tag(:password, nil, type: 'password') %>
+    <%= submit_tag "Done", remote: true, id: 'sign-in-button', class: 'submit-button' %>
   <% end %>
-  <%= link_to "Done", '/login', id: 'sign-in-button', class: 'button' %>
-  <%= link_to "Create a new user", new_user_path, id: 'create-user-button', class: 'button' %>
+  <%= link_to "Go Back", root_path, class: 'button' %>
 </div>  

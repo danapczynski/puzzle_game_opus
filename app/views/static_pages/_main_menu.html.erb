@@ -1,0 +1,9 @@
+<div id='main_menu'>
+  <% if logged_in? %>
+    <h3>Welcome, <%= link_to current_user.name, user_path(current_user), :id => 'user_greeting' %>!</h3>
+    <%= link_to "Sign Out", '/signout', :method => :delete, :id => 'signout' %>
+  <% else %>
+    <%= link_to "Load an Existing Account", new_session_path, remote: true, id: 'main_menu_login',class: 'button' %>
+    <%= link_to "Create a New Account", new_user_path, remote: true, id: 'main_menu_create', class: 'button' %>
+  <% end %>
+</div>

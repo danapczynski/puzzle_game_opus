@@ -9,6 +9,7 @@
     <%= t.password_field :password %>
     <%= t.label :password_confirmation %>
     <%= t.password_field :password_confirmation %>
+    <%= t.submit 'Done', remote: true, id: 'submit-new_user-button', class: 'submit-button' %>
   <% end %>
-  <%= link_to "Done", '/create_user', id: 'submit-new-user-button', class: 'button' %>
+  <%= link_to "Go Back", root_path, class: 'button' %>
 </div>

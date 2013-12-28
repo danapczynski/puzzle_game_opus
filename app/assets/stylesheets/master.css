@@ -89,6 +89,7 @@ body {
   left: 150px;
   color: #222200;
   font-size: 18pt;
+  padding: 0 3px;
 }
 
 #game-title {
@@ -98,7 +99,9 @@ body {
 }
 
 .errors {
-  color: red;
+  margin: 20px 20px 0 20px;
+  font-size: 12pt;
+  list-style: none;
 }
 
 /* FORMS */
@@ -135,7 +138,7 @@ input:focus {
 }
 
 #new-user-form {
-  top: 150px;
+  top: 120px;
   margin: 0 auto;
 }
 
@@ -158,15 +161,30 @@ input:focus {
   height: 40px;
   width: 400px;
   margin: 10px auto;
-  background-color: #222200;
-  color: #476200;
+  border: 1px solid #222200;
+  background-color: #476200;
+  color: #222200;
   line-height: 40px;
   vertical-align: middle;
   text-align: center;
   text-decoration: none;
 }
 
-.button:hover {
-  color: #FFF;
+.submit-button {
+  display: block;
+  height: 40px;
+  width: 400px;
+  margin: 10px auto;
+  border: 1px solid #222200;
+  background-color: #476200;
+  color: #222200;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+}
+
+.button:hover, .submit-button:hover{ 
+  color: #476200;
+  background-color: #222200;
   text-decoration: none;
 }

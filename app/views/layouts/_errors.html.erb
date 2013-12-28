@@ -1,3 +1,10 @@
-<% if @errors %>
-  <p class='errors'><%= @errors %></p>
+<% if @errors && @errors.class == Array %>
+  <ul class='errors'>
+    <strong>ERRORS:</strong>
+    <% @errors.each do |err| %>
+      <li><%= err %></li>
+    <% end %>
+  </ul>
+<% elsif @errors && @errors.class == String %>
+  <p class='errors'><strong>Error: </strong><%= @errors %></p>
 <% end %>
