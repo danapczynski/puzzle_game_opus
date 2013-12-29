@@ -64,6 +64,7 @@ module Opus
     # Avoiding assets:precompile hangups in Heroku
     config.assets.initialize_on_precompile = false
     config.assets.precompile += ['forms.js']
+    config.assets.precompile += ['jquery.rotate.js']
     config.assets.precompile += ['levels.js']
     config.assets.precompile += ['levels/level1.js']
   end
