@@ -1,6 +1,7 @@
 $(function() {
   position_blocks()    // See level-specific JS file 
   position_solution()  // See level-specific JS file
+  position_text()      // See level-specific JS file
   solutionRect = solutionLocation()
   objectify()
   activeBehavior()

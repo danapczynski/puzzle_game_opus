@@ -1,9 +1,17 @@
-#level_number {
+#level_number, #solution_text, #blocks_text {
   position: absolute;
   text-align: center;
-  top: 10px;
   left: 1%;
   right: 1%;
+}
+
+#level_number {
+  top: 10px;
+}
+
+#solution_text h3 {
+  margin: 10px;
+  padding: 0;
 }
 
 .object {
