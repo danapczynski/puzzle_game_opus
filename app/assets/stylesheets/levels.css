@@ -65,3 +65,7 @@
 .game-block.active .filled.fit {
   background-color: #FFF !important;
 }
+
+.game-block.active .filled.overlap {
+  background-color: red !important;
+}

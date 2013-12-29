@@ -72,14 +72,12 @@ var gameBlock = function(htmlObject){
       };
     },
     deactivate: function(){
-      element.className = 'object game-block'
-      element.style['z-index'] = 2
+      $(element).removeClass('active').addClass('inactive').css('z-index', 2)
       activeBlock = []
       this.toggleColor()
     },
     activate: function(){
-      element.className += ' active'
-      element.style['z-index'] = 10
+      $(element).removeClass('inactive').addClass('active').css('z-index', 10)
     },
     clickActivate: function() {
       var that = this
@@ -104,6 +102,21 @@ var gameBlock = function(htmlObject){
         rect.push([$(this).offset().left, $(this).offset().top])
       })
       return rect
+    },
+    checkOverlap: function() {
+      var inactive = []
+      $('.inactive .filled').each(function(){
+        inactive.push([$(this).offset().left, $(this).offset().top])
+      })      
+      filled.each(function(){
+        var that = $(this)
+        var coordinates = [$(this).offset().left, $(this).offset().top]
+        for (x=0; x<inactive.length; x++) {
+          if (coordinates.compare(inactive[x])) {
+            that.addClass('overlap')
+          }
+        }
+      })
     },
     compareSolution: function() {
       var rect = this.getRect()
@@ -145,33 +158,39 @@ var populateGrid = function(){
 
 var activeBehavior = function(){
   document.addEventListener('keydown', function(e){
-    var active = $('.active')[0]
-    console.log(e.keyCode)
-    if (e.keyCode == 32) {
-      e.preventDefault();
-      activeBlock[0].rotate()
+    if (activeBlock[0]) {
+      if (e.keyCode == 32) {
+        e.preventDefault();
+        activeBlock[0].rotate()
+      }
+      else if (e.keyCode == 13) {
+        e.preventDefault();
+        if ($('.overlap').length === 0){
+          activeBlock[0].deactivate()
+        }
+      }
+      else if (e.keyCode == 39) {
+        e.preventDefault();
+        activeBlock[0].moveRight()
+      }
+      else if (e.keyCode == 37) {
+        e.preventDefault();
+        activeBlock[0].moveLeft()
+      }
+      else if (e.keyCode == 38) {
+        e.preventDefault();
+        activeBlock[0].moveUp()
+      }
+      else if (e.keyCode == 40) {
+        e.preventDefault();
+        activeBlock[0].moveDown()
+      }
+      if (activeBlock[0]) {
+        activeBlock[0].compareSolution()
+        activeBlock[0].checkOverlap()
+      }
     }
-    if (e.keyCode == 13) {
-      e.preventDefault();
-      activeBlock[0].deactivate()
-    }
-    else if (e.keyCode == 39) {
-      e.preventDefault();
-      activeBlock[0].moveRight()
-    }
-    else if (e.keyCode == 37) {
-      e.preventDefault();
-      activeBlock[0].moveLeft()
-    }
-    else if (e.keyCode == 38) {
-      e.preventDefault();
-      activeBlock[0].moveUp()
-    }
-    else if (e.keyCode == 40) {
-      e.preventDefault();
-      activeBlock[0].moveDown()
-    }
-    activeBlock[0].compareSolution()
+    checkForVictory()
   })
 }
 
@@ -191,3 +210,25 @@ var resizableSolution = function() {
   })
 }
 
+var checkForVictory = function() {
+  if (($('.game-block .filled').length === $('.game-block .fit').length) && $('.overlap').length === 0) {
+    activeBlock[0].deactivate()
+    console.log("YES!!!")
+  }
+}
+
+Array.prototype.compare = function(arr) {
+  if (!arr) {
+    return false
+  }
+  for (var i = 0, l=this.length; i < l; i++) {
+    if (this[i] instanceof Array && arr[i] instanceof Array) {
+      if (!this[i].compare(arr[i]))
+        return false;
+    }
+    else if (this[i] != arr[i]) {
+      return false;
+    }
+  }
+  return true;
+}
