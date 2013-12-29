@@ -213,7 +213,8 @@ var resizableSolution = function() {
 var checkForVictory = function() {
   if (($('.game-block .filled').length === $('.game-block .fit').length) && $('.overlap').length === 0) {
     activeBlock[0].deactivate()
-    console.log("YES!!!")
+    $('#solution_text').html('')
+    $('#blocks_text').html('<h3>Congratulations!</h3>')
   }
 }
 
