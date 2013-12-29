@@ -3,6 +3,7 @@ $(function() {
   position_solution()  // See level-specific JS file
   position_text()      // See level-specific JS file
   solutionRect = solutionLocation()
+  myTransformProperty = setTransformProperty($('#solution')[0])
   objectify()
   activeBehavior()
   populateGrid()
@@ -24,6 +25,7 @@ var gameBlock = function(htmlObject){
   var vPos = $(element).offset().top
   var home = null
   var rect = null
+  var scaleX = 1
 
   return {
     nextRotation: function() {
@@ -34,9 +36,29 @@ var gameBlock = function(htmlObject){
         return rotDeg = 0
       }
     },
-    rotate: function(){
-      var rotation = this.nextRotation()
-      $(element).css('rotate', rotation)
+    nextFlip: function() {
+      if (scaleX === 1) {
+        return scaleX -= 2
+      }
+      else {
+        return scaleX += 2
+      }
+    },
+    flip: function() {
+      return this.nextFlip()
+    },
+    rotate: function() {
+      return this.nextRotation()
+    },
+    set_flip_and_rotate: function() {
+      if (scaleX > 0) {
+        console.log('if')
+        $(element).css(myTransformProperty, "scaleX(" + scaleX + ") rotate(" + rotDeg + "deg)")
+      }
+      else {
+        console.log('else')
+        $(element).css(myTransformProperty, "scaleX(" + scaleX + ") rotate(" + (rotDeg * -1) + "deg)") 
+      }
     },
     moveRight: function(){
       $(element).animate({
@@ -159,6 +181,12 @@ var activeBehavior = function(){
       if (e.keyCode == 32) {
         e.preventDefault();
         activeBlock[0].rotate()
+        activeBlock[0].set_flip_and_rotate()
+      }
+      else if (e.keyCode == 70) {
+        e.preventDefault();
+        activeBlock[0].flip()
+        activeBlock[0].set_flip_and_rotate()
       }
       else if (e.keyCode == 13) {
         e.preventDefault();
@@ -229,4 +257,26 @@ Array.prototype.compare = function(arr) {
     }
   }
   return true;
+}
+
+/* 
+ * the setTranformProperty() function was borrowed from
+ * Jakub Jankiewicz's JQuery CSS Rotate plugin, whose license
+ * information can be found below.
+ *
+ * JQuery CSS Rotate property using CSS3 Transformations
+ * Copyright (c) 2011 Jakub Jankiewicz  <http://jcubic.pl>
+ * licensed under the LGPL Version 3 license.
+ * http://www.gnu.org/licenses/lgpl.html
+ */
+
+var setTransformProperty = function(elem) {
+  var properties = ['transform', 'WebkitTransform', 'MozTransform', 'msTransform', 'OTransform'];
+  var p;
+  while (p = properties.shift()) {
+    if (elem.style[p] !== undefined) {
+      return p;
+    }
+  }
+  return false;
 }
