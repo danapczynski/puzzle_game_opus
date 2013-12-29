@@ -36,10 +36,7 @@ var gameBlock = function(htmlObject){
     },
     rotate: function(){
       var rotation = this.nextRotation()
-      element.style['-webkit-transform']=('rotate(' + rotation + 'deg)') 
-      element.style['-moz-transform']=('rotate(' + rotation + 'deg)')
-      element.style['-o-transform']=('rotate(' + rotation + 'deg)')
-      element.style['-ms-transform']=('rotate(' + rotation + 'deg)')
+      $(element).css('rotate', rotation)
     },
     moveRight: function(){
       $(element).animate({
