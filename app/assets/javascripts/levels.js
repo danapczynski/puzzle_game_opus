@@ -8,6 +8,7 @@ $(function() {
   activeBehavior()
   populateGrid()
   resizableSolution() 
+  clickObscuredObject()
 });
 
 var activeBlock = []
@@ -100,7 +101,7 @@ var gameBlock = function(htmlObject){
     },
     clickActivate: function() {
       var that = this
-      element.addEventListener('click', function(){
+      filled.on('click', function(){
         if (activeBlock[0]) { activeBlock[0].deactivate() }
         that.activate()
         activeBlock = [ that ]
@@ -244,6 +245,17 @@ var checkForVictory = function() {
     $('#blocks_text').html('<h3>Congratulations!</h3>')
     $('#next_level_link').show()
   }
+}
+
+var clickObscuredObject = function() {
+  $('.empty').on('click', function(){
+    var position = [$(this).offset().left, $(this).offset().top]
+    $('.game-block .filled').each(function(){
+      if (position.compare([$(this).offset().left, $(this).offset().top])) {
+        this.click()
+      }
+    })
+  })
 }
 
 Array.prototype.compare = function(arr) {
