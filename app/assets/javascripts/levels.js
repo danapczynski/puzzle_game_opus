@@ -9,6 +9,7 @@ $(function() {
   populateGrid()
   resizableSolution() 
   clickObscuredObject()
+  clickOffDeactivate()
 });
 
 var activeBlock = []
@@ -259,14 +260,31 @@ var checkForVictory = function() {
   }
 }
 
+var clickOffDeactivate = function() {
+  $('#main').on('click', function(e){
+    if (activeBlock[0] && ($(e.target).attr('class') === undefined)) {
+      activeBlock[0].deactivate()
+    }
+  })
+  $('#solution td').on('click', function(e){
+    if (activeBlock[0]) {
+      activeBlock[0].deactivate() 
+    }
+  })
+}
+
 var clickObscuredObject = function() {
   $('.empty').on('click', function(){
+    var active = activeBlock[0]
     var position = [$(this).offset().left, $(this).offset().top]
     $('.game-block .filled').each(function(){
       if (position.compare([$(this).offset().left, $(this).offset().top])) {
         this.click()
       }
     })
+    if (active === activeBlock[0]) {
+      active.deactivate()
+    }
   })
 }
 
