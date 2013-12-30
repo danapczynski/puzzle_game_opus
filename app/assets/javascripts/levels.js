@@ -236,7 +236,7 @@ var resizableSolution = function() {
 }
 
 var checkForVictory = function() {
-  if (($('.game-block .filled').length === $('.game-block .fit').length) && $('.overlap').length === 0) {
+  if (($('#solution .filled').length === $('.game-block .fit').length) && $('.overlap').length === 0) {
     activeBlock[0].deactivate()
     $('#comp_time').val(999)
     $('#score_form form').submit()
