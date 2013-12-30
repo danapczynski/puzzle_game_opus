@@ -1,6 +1,7 @@
 LEVELS = {
   1 => ['solution1', 't_block', 'submarine', 'l_block'],
-  2 => ['solution2', 't_block', 'submarine', 'l_block', 'utah']
+  2 => ['solution2', 't_block', 'submarine', 'l_block', 'utah'],
+  3 => ['solution3', 't_block', 'submarine', 'l_block', 'utah', 'straight_block']
 }
 
 class LevelSeed
@@ -21,6 +22,8 @@ class BlockSeed
     Solution.create(nickname: 'solution1')
     Block.create(nickname: 'utah')
     Solution.create(nickname: 'solution2')
+    Block.create(nickname: 'straight_block')
+    Solution.create(nickname: 'solution3')
   end
 end
 
@@ -28,5 +31,5 @@ end
 BlockSeed.populate
 
 # Set the number of levels
-LevelSeed.populate(2)
+LevelSeed.populate(3)
 
