@@ -16,5 +16,13 @@
   <% end %>
 </div>
 
+<div id='score_form'>
+  <%= form_for @score, remote: true do |f| %>
+    <%= f.text_field :user_id, value: current_user.id %>
+    <%= f.text_field :level_id, value: @level.id %>
+    <%= f.text_field :completion_time, id: "comp_time" %>
+  <% end %>
+</div>
+
 <%= javascript_include_tag "levels" %>
 <%= javascript_include_tag "levels/level#{@level.level_number}" %>
