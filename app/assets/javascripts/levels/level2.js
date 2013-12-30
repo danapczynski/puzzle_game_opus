@@ -13,6 +13,6 @@ var position_solution = function() {
 }
 
 var position_text = function() {
-  $('#solution_text').css('top', 160).append('<p>A larger space to fill...</p>')
-  $('#blocks_text').css('top', 350).append('<p>...makes your task considerably more difficult.</p>')
+  $('#solution_text').css('top', 140).append('<p>A larger space to fill makes things considerably more difficult.</p>')
+  $('#blocks_text').css('top', 350).append('<p>Helpful hint: the "f" key flips the active block to its mirror image.</p>')
 }
