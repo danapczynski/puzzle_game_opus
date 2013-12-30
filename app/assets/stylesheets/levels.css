@@ -16,6 +16,7 @@
 
 #next_level_link {
   bottom: 20px;
+  z-index: 20;
   display: none;
 }
 

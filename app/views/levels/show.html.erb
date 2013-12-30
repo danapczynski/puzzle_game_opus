@@ -12,7 +12,7 @@
   <% if @level.next %>
     <%= link_to "Proceed to the next level", @level.next, class: 'button' %>
   <% else %>
-    <p>That's all the levels we have for now! Check back again soon for more.</p>
+    <%= link_to "Check back soon for more levels!", user_path(current_user), class: 'button' %>
   <% end %>
 </div>
 
