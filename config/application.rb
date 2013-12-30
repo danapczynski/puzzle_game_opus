@@ -66,6 +66,8 @@ module Opus
     config.assets.precompile += ['forms.js']
     config.assets.precompile += ['jquery.rotate.js']
     config.assets.precompile += ['levels.js']
-    config.assets.precompile += ['levels/level1.js']
+    Level.all.each do |level|
+      config.assets.precompile += ["levels/level#{level.level_number}.js"]
+    end
   end
 end
