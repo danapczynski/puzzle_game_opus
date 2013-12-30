@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :authenticate
+
   def new
     @user = User.new
     render layout: false
@@ -18,4 +20,19 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
+
+  private
+
+    def authenticate
+      if params[:id]
+        begin
+          @user = User.find(params[:id])
+        rescue
+          @user = nil
+        end
+        unless logged_in? && current_user == @user
+          redirect_to root_path
+        end
+      end
+    end
 end
