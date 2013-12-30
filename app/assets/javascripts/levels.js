@@ -19,7 +19,7 @@ var allBlocks = []
 var gameBlock = function(htmlObject){
   var element = htmlObject
   var filled = $(element).children().children().children('.filled')
-  var colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange']
+  var colors = ['blue', 'green', 'yellow', 'purple', 'orange']
   var activeColor = colors[Math.floor(((Math.random() * colors.length)))]
   var rotDeg = 0
   var hPos = $(element).offset().left
@@ -45,13 +45,13 @@ var gameBlock = function(htmlObject){
         return scaleX += 2
       }
     },
-    flip: function() {
+    flip: function(){
       return this.nextFlip()
     },
-    rotate: function() {
+    rotate: function(){
       return this.nextRotation()
     },
-    set_flip_and_rotate: function() {
+    set_flip_and_rotate: function(){
       if (scaleX > 0) {
         console.log('if')
         $(element).css(myTransformProperty, "scaleX(" + scaleX + ") rotate(" + rotDeg + "deg)")
@@ -62,24 +62,35 @@ var gameBlock = function(htmlObject){
       }
     },
     moveRight: function(){
-      $(element).animate({
-        left: "+=30"
-      }, 0);
+      if (($('#main').offset().left + $('#main').innerWidth()) - ($(element).offset().left + $(element).outerWidth()) > 40) {
+        $(element).animate({
+          left: "+=30"
+        }, 0);
+      }
     },
     moveLeft: function(){
-      $(element).animate({
-        left: "-=30"
-      }, 0);
+      if ($(element).offset().left - $('#main').offset().left > 40) {
+        $(element).animate({
+          left: "-=30"
+        }, 0);
+      }
     },
     moveUp: function(){
-      $(element).animate({
-        top: "-=30"
-      }, 0);
+      if ($(element).offset().top - $('#main').offset().top > 40) {
+        $(element).animate({
+          top: "-=30"
+        }, 0);
+      }
     },
     moveDown: function(){
-      $(element).animate({
-        top: "+=30"
-      }, 0);
+      if (($('#main').offset().top + $('#main').innerHeight()) - ($(element).offset().top + $(element).outerHeight()) > 40) {
+        $(element).animate({
+          top: "+=30"
+        }, 0);
+      }
+    },
+    setColor: function(){
+      filled.css('background-color', activeColor)
     },
     toggleColor: function(){
       for (var x = 0; x < filled.length; x++) {
@@ -94,7 +105,7 @@ var gameBlock = function(htmlObject){
     deactivate: function(){
       $(element).removeClass('active').addClass('inactive').css('z-index', 2)
       activeBlock = []
-      this.toggleColor()
+      // this.toggleColor()
     },
     activate: function(){
       $(element).removeClass('inactive').addClass('active').css('z-index', 10)
@@ -105,7 +116,7 @@ var gameBlock = function(htmlObject){
         if (activeBlock[0]) { activeBlock[0].deactivate() }
         that.activate()
         activeBlock = [ that ]
-        that.toggleColor()
+        // that.toggleColor()
       })
     },
     isActive: function() {
@@ -160,6 +171,7 @@ var objectify = function() {
     objects[x].id = ('object' + x)
     var object = gameBlock(objects[x])
     object.clickActivate()
+    object.setColor()
     allBlocks.push(object)
   }
 }
