@@ -1,4 +1,4 @@
-#level_number, #solution_text, #blocks_text {
+#level_number, #solution_text, #blocks_text, #next_level_link {
   position: absolute;
   text-align: center;
   left: 1%;
@@ -12,6 +12,11 @@
 #solution_text h3 {
   margin: 10px;
   padding: 0;
+}
+
+#next_level_link {
+  bottom: 20px;
+  display: none;
 }
 
 .object {

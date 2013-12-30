@@ -8,5 +8,13 @@
 
 <%= @solution.read_shape %>
 
+<div id='next_level_link'>
+  <% if @level.next %>
+    <%= link_to "Proceed to the next level", @level.next, class: 'button' %>
+  <% else %>
+    <p>That's all the levels we have for now! Check back again soon for more.</p>
+  <% end %>
+</div>
+
 <%= javascript_include_tag "levels" %>
 <%= javascript_include_tag "levels/level#{@level.level_number}" %>

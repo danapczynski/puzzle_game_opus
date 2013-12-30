@@ -240,6 +240,7 @@ var checkForVictory = function() {
     activeBlock[0].deactivate()
     $('#solution_text').html('')
     $('#blocks_text').html('<h3>Congratulations!</h3>')
+    $('#next_level_link').show()
   }
 }
 

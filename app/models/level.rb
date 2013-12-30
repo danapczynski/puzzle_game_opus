@@ -23,6 +23,10 @@ class Level < ActiveRecord::Base
     @playable ||= self.blocks.where(type: nil)
   end
 
+  def next
+    Level.find_by_level_number(level_number + 1)
+  end
+
   private
 
     def solutions
