@@ -42,10 +42,20 @@
 
 .game-block .filled {
   background: gray;
+  box-shadow: inset 1px 1px #000,
+              inset -1px -1px #000,
+              inset -1px 1px #000,
+              inset 1px -1px #000;
+}
+
+.active .filled {
+  box-shadow: 1px 1px 40px #222;
 }
 
 #solution .filled {
-  background: #000;
+  background: #222200;
+  box-shadow: inset 1px 1px #476200,
+              inset -1px -1px #476200;
 }
 
 #solution {
