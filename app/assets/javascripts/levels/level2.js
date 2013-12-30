@@ -1,7 +1,7 @@
 var position_blocks = function() {
   var blocks = $('.game-block')
   var top = 421
-  var left = 45
+  var left = 75
   for (var x=0; x < blocks.length; x++) {
     blocks.eq(x).css('top', top).css('left', left)
     left += 150
@@ -13,6 +13,6 @@ var position_solution = function() {
 }
 
 var position_text = function() {
-  $('#solution_text').css('top', 160).append('<p>A larger space to fill...</p>')
-  $('#blocks_text').css('top', 350).append('<p>...makes your task considerably more difficult.</p>')
+  $('#solution_text').css('top', 120).append('<h3>HOW TO PLAY</h3><p>Fill this:</p>')
+  $('#blocks_text').css('top', 360).append('<p>...with these!</p>')
 }
