@@ -6,8 +6,8 @@
     <li><%= link_to 'Start a new game', @user.next_level, class: 'button' %></li>
   <% else %>
     <li><%= link_to 'Continue your game!', @user.next_level, class: 'button' %></li>
-    <% @user.levels.each do |level| %>
-      <li><%= link_to "Level #{level.id}", level %></li>
+    <% @user.report_levels.each do |level| %>
+      <li><%= link_to "Level #{level.id}", level, class: 'button' %></li>
     <% end %>
   <% end %>
   <%= link_to "Sign Out", '/signout', :method => :delete, :id => 'signout', class: 'button' %>  

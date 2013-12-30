@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
     return Level.find_by_level_number(1) if new_player?
     Level.find_by_level_number(last_level_completed.level_number + 1)
   end
+
+  def report_levels
+    levels.uniq
+  end
 end
