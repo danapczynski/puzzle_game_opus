@@ -1,5 +1,5 @@
 class Block < ActiveRecord::Base
-  validates :nickname, presence: true
+  validates :nickname, presence: true, uniqueness: true
   validates :shape, presence: true
   has_and_belongs_to_many :levels
   before_validation :populate_shape

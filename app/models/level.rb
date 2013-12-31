@@ -3,7 +3,7 @@ class Level < ActiveRecord::Base
   has_many :users, through: :scores
   has_and_belongs_to_many :blocks
   attr_accessible :level_number
-  validates :level_number, presence: true
+  validates :level_number, presence: true, uniqueness: true
 
   def associate_blocks(nicknames_array)
     nicknames_array.each do |nick|
