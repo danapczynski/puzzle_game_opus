@@ -10,6 +10,7 @@ $(function() {
   resizableSolution() 
   clickObscuredObject()
   clickOffDeactivate()
+  startTimer()
 });
 
 var activeBlock = []
@@ -189,6 +190,19 @@ var populateGrid = function(){
   }
 }
 
+var startTimer = function(){
+  var getTime = function(){
+    return Number($('#current_seconds').text())
+  }
+  setInterval(function(){
+    $('#current_seconds').text(getTime() + 1)
+  }, 1000);
+}
+
+var stopTimer = function(){
+  $('#current_seconds').attr('id', '')
+}
+
 var activeBehavior = function(){
   document.addEventListener('keydown', function(e){
     if (activeBlock[0]) {
@@ -252,7 +266,8 @@ var resizableSolution = function() {
 var checkForVictory = function() {
   if (($('#solution .filled').length === $('.game-block .fit').length) && $('.overlap').length === 0) {
     activeBlock[0].deactivate()
-    $('#comp_time').val(999)
+    $('#comp_time').val($('#current_seconds').text())
+    stopTimer()
     $('#score_form form').submit()
     $('#solution_text').html('')
     $('#blocks_text').html('<h3>Congratulations!</h3>')
