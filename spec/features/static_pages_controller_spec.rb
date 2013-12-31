@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'StaticPages' do
   let(:user) { FactoryGirl.create(:user) }
 
-  describe 'index' do
+  describe '#index' do
     context 'when the user is not logged in' do
       it 'should take user to the main menu' do
         visit root_path
