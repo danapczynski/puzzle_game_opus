@@ -1,3 +1,36 @@
+#status-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 33px;
+  width: 100%;
+  background-color: #222200;
+  font-size: 14pt;
+  line-height: 30px;
+  vertical-align: middle;
+}
+
+#main #status-bar p, #status-bar a {
+  color: #476200;
+  text-decoration: none;
+  margin: 0 30px;
+  width: auto;
+  display: inline;
+  float: left;
+}
+
+#status-bar a {
+  font-weight: bolder;
+}
+
+#status-bar a:hover {
+  color: #678200;
+}
+
+#main #status-bar #help-button {
+  float: right;
+}
+
 #level_number, #solution_text, #blocks_text, #next_level_link {
   position: absolute;
   text-align: center;
