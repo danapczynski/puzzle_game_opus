@@ -3,6 +3,8 @@ require 'spec_helper'
 describe Level do
   it { should have_many :scores }
   it { should have_many :users }
+  it { should validate_presence_of :level_number }
+  it { should validate_uniqueness_of :level_number }
   it { should have_and_belong_to_many :blocks }
   
   let(:level1) { FactoryGirl.create(:level, id: 1) }
