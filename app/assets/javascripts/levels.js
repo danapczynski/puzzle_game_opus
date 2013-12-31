@@ -7,6 +7,7 @@ $(function() {
   objectify()
   activeBehavior()
   populateGrid()
+  armHelpButton()
   resizableSolution() 
   clickObscuredObject()
   clickOffDeactivate()
@@ -176,6 +177,23 @@ var objectify = function() {
     object.setColor()
     allBlocks.push(object)
   }
+}
+
+var armHelpButton = function(){
+  $('#help').hide()
+  $('#help-button').on('click', function(e){
+    e.preventDefault()
+    if ($('#help').is(':hidden')) {
+      $('#help').slideToggle('fast');
+      $('#help-button').text('Go Back');
+      $('#current_seconds').attr('id', 'paused');
+    }
+    else {
+      $('#help').slideToggle('fast');
+      $('#help-button').text('Help!');
+      $('#paused').attr('id', 'current_seconds');
+    }
+  })
 }
 
 var populateGrid = function(){

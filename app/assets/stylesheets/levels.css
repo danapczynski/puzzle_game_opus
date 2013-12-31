@@ -8,6 +8,7 @@
   font-size: 14pt;
   line-height: 30px;
   vertical-align: middle;
+  z-index: 41;
 }
 
 #main #status-bar p, #status-bar a {
@@ -17,6 +18,48 @@
   width: auto;
   display: inline;
   float: left;
+}
+
+#help {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #222200;
+  color: #476200;
+  z-index: 40;
+}
+
+.help-text {
+  font-size: 14pt;
+}
+
+#instructions {
+  margin: 0 auto;
+  border: 1px solid #476200;
+  font-size: 14pt;
+  padding: 10px;
+}
+
+#instructions caption {
+  background-color: #476200;
+  color: #222200;
+  font-weight: bolder;
+}
+
+#instructions td:nth-child(odd) {
+  text-align: right;
+  font-weight: bold;
+}
+
+#instructions td:nth-child(even) {
+  padding-left: 10px;
+}
+
+#help h3 {
+  margin-top: 50px;
+  text-align: center;
 }
 
 #status-bar a {
