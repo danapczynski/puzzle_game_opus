@@ -2,7 +2,8 @@ LEVELS = {
   1 => ['solution1', 't_block', 'submarine', 'l_block'],
   2 => ['solution2', 't_block', 'submarine', 'l_block', 'utah'],
   3 => ['solution3', 't_block', 'submarine', 'l_block', 'utah', 'straight_block'],
-  4 => ['solution4', 't_block', 'submarine', 'l_block', 'utah', 'straight_block', 'corner']
+  4 => ['solution4', 't_block', 'submarine', 'l_block', 'utah', 'straight_block', 'corner'],
+  5 => ['solution5', 't_block', 'submarine', 'l_block', 'utah', 'straight_block', 'corner', 'c_block']
 }
 
 class LevelSeed
@@ -10,7 +11,7 @@ class LevelSeed
     1.upto(n) do |index| 
       level = Level.new(level_number: index) 
       level.associate_blocks(LEVELS[index])
-      level.save!
+      level.save
     end
   end
 end
@@ -27,6 +28,8 @@ class BlockSeed
     Solution.create(nickname: 'solution3')
     Block.create(nickname: 'corner')
     Solution.create(nickname: 'solution4')
+    Block.create(nickname: 'c_block')
+    Solution.create(nickname: 'solution5')
   end
 end
 
@@ -34,5 +37,5 @@ end
 BlockSeed.populate
 
 # Set the number of levels
-LevelSeed.populate(4)
+LevelSeed.populate(5)
 
