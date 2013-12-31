@@ -1,12 +1,4 @@
-<div id='status-bar'>
-  <%= link_to 'OPUS', root_path, id: 'status-title' %>
-  <p id='current_time'>Time: <span id='current_seconds'>0</span> secs</p> 
-  <p id='fastest_time'>Best: <%= current_user.best_score(@level) %></p> 
-  <%= link_to 'Help!', '#', id: 'help-button' %>
-</div>
-<h1 id='level_number'>Level <%= @level.level_number %></h1>
-<div id='solution_text'></div>
-<div id='blocks_text'></div>
+<%= render 'status_bar' %>
 
 <% @blocks.each do |block| %>
   <%= block.read_shape %>
@@ -22,13 +14,7 @@
   <% end %>
 </div>
 
-<div id='score_form'>
-  <%= form_for @score, remote: true do |f| %>
-    <%= f.text_field :user_id, value: current_user.id %>
-    <%= f.text_field :level_id, value: @level.id %>
-    <%= f.text_field :completion_time, id: "comp_time" %>
-  <% end %>
-</div>
+<%= render 'score_form' %>
 
 <%= javascript_include_tag "levels" %>
 <%= javascript_include_tag "levels/level#{@level.level_number}" %>
