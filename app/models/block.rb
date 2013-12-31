@@ -10,6 +10,10 @@ class Block < ActiveRecord::Base
     self.shape.html_safe
   end
 
+  def update_shape
+    populate_shape
+  end
+
   private
 
     def test_html_existence

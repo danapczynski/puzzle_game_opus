@@ -31,10 +31,18 @@ class BlockSeed
     Block.create(nickname: 'c_block')
     Solution.create(nickname: 'solution5')
   end
+
+  def self.update_shapes
+    Block.all.each do |block| 
+      block.update_shape
+      block.save
+    end
+  end
 end
 
 # Create blocks
 BlockSeed.populate
+BlockSeed.update_shapes
 
 # Set the number of levels
 LevelSeed.populate(5)

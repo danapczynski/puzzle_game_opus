@@ -4,7 +4,7 @@ var position_blocks = function() {
   var left = 35
   for (var x=0; x < blocks.length; x++) {
     if (x === 4) {
-      top = 511
+      top = 481
       left = 215 
     }
     blocks.eq(x).css('top', top).css('left', left)
