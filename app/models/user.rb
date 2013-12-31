@@ -26,4 +26,9 @@ class User < ActiveRecord::Base
   def report_levels
     levels.uniq
   end
+
+  def best_score(level)
+    score = scores.where(level_id: level.id).min_by { |score| score.completion_time }.completion_time
+    score == 1 ? "#{score} sec" : "#{score} secs"
+  end
 end
