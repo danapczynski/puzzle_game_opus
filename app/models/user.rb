@@ -28,7 +28,11 @@ class User < ActiveRecord::Base
   end
 
   def best_score(level)
-    score = scores.where(level_id: level.id).min_by { |score| score.completion_time }.completion_time
-    score == 1 ? "#{score} sec" : "#{score} secs"
+    if levels.include?(level)
+      score = scores.where(level_id: level.id).min_by { |score| score.completion_time }.completion_time
+      score == 1 ? "#{score} sec" : "#{score} secs"
+    else
+      "N/A"
+    end
   end
 end
