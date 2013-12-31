@@ -55,4 +55,20 @@ feature 'SessionsController' do
       end
     end
   end
+
+  describe '#destroy' do
+    before(:each) do
+      visit root_path
+      click_link('Load an Existing Account')
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      click_button('Done')
+    end
+
+    it 'returns the user to the main menu' do
+      click_link('Sign Out')
+      expect(page.body).to have_link('Load an Existing Account')
+      expect(page.body).to have_link('Create a New Account')
+    end
+  end
 end
