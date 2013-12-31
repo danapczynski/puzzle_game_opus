@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
+  validates :email, :email_format => {:message => 'is not formatted correctly'}
   validates :password, presence: true
   has_many  :scores
   has_many  :levels, through: :scores
