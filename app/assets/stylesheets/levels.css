@@ -14,7 +14,7 @@
 #main #status-bar p, #status-bar a {
   color: #476200;
   text-decoration: none;
-  margin: 0 30px;
+  margin: 0 20px;
   width: auto;
   display: inline;
   float: left;
@@ -140,22 +140,6 @@
   left: 211px;
   z-index: 1;
   position: absolute;
-}
-
-#game-grid {
-  position: absolute;
-  top: 60px;
-  left: 100px;
-  border-spacing: 0;
-  border: 1px solid #999;
-  z-index: -20;
-}
-
-.grid-cell {
-  padding: 0;
-  height: 28px;
-  width: 28px;
-  border: 1px solid #999;
 }
 
 .game-block.active .filled.fit {

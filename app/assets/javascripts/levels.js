@@ -1,4 +1,5 @@
 $(function() {
+  armHelpButton()
   position_blocks()    // See level-specific JS file 
   position_solution()  // See level-specific JS file
   position_text()      // See level-specific JS file
@@ -6,8 +7,6 @@ $(function() {
   myTransformProperty = setTransformProperty($('#solution')[0])
   objectify()
   activeBehavior()
-  populateGrid()
-  armHelpButton()
   resizableSolution() 
   clickObscuredObject()
   clickOffDeactivate()
@@ -108,7 +107,6 @@ var gameBlock = function(htmlObject){
     deactivate: function(){
       $(element).removeClass('active').addClass('inactive').css('z-index', 2)
       activeBlock = []
-      // this.toggleColor()
     },
     activate: function(){
       $(element).removeClass('inactive').addClass('active').css('z-index', 10)
@@ -119,7 +117,6 @@ var gameBlock = function(htmlObject){
         if (activeBlock[0]) { activeBlock[0].deactivate() }
         that.activate()
         activeBlock = [ that ]
-        // that.toggleColor()
       })
     },
     isActive: function() {
@@ -194,18 +191,6 @@ var armHelpButton = function(){
       $('#paused').attr('id', 'current_seconds');
     }
   })
-}
-
-var populateGrid = function(){
-  var grid = $('#game-grid')
-  for (var y=0; y < 32; y++) {
-    var row = "<tr class='grid-row'>"
-    for (var x=0; x < 32; x++) {
-      row += "<td class='grid-cell'></td>"
-    }
-    row += "</tr>"
-    grid.append(row)
-  }
 }
 
 var startTimer = function(){
