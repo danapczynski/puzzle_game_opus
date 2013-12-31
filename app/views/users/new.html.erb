@@ -7,7 +7,7 @@
     <%= t.text_field :email %>
     <%= t.label :password %>
     <%= t.password_field :password %>
-    <%= t.label :password_confirmation %>
+    <%= t.label :password_confirmation, "Confirm Password" %>
     <%= t.password_field :password_confirmation %>
     <%= t.submit 'Done', remote: true, id: 'submit-new_user-button', class: 'submit-button' %>
   <% end %>
