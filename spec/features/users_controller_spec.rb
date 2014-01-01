@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'UsersController' do
   let(:user) { FactoryGirl.create(:user) }
-  let(:new_user) { FactoryGirl.build(:user) }
+  let(:new_user) { FactoryGirl.build(:user, name: 'Some_Other_Name') }
   let(:level) { FactoryGirl.create(:level) }
 
   describe '#show' do
@@ -19,8 +19,17 @@ feature 'UsersController' do
         visit user_path(user)
       end
 
-      it 'should take user to level-selection screen' do
+      it 'takes user to level-selection screen' do
         expect(page.body).to have_content("Welcome, #{user.name}!")
+      end
+
+      context 'when user attempts to access another user\'s #show page' do
+        it 'redirects to the user\'s own #show page' do
+          new_user.save
+          visit user_path(new_user)
+          expect(page.body).not_to have_content(new_user.name)
+          expect(page.body).to have_content(user.name)
+        end
       end
 
       context 'when user has not completed any levels' do
