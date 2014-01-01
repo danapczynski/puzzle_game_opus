@@ -4,6 +4,7 @@ class Level < ActiveRecord::Base
   has_and_belongs_to_many :blocks
   attr_accessible :level_number
   validates :level_number, presence: true, uniqueness: true
+  validate :no_more_than_one_solution
 
   def associate_blocks(nicknames_array)
     nicknames_array.each do |nick|
@@ -30,6 +31,12 @@ class Level < ActiveRecord::Base
   private
 
     def solutions
-      @solutions ||= self.blocks.where(type: 'Solution')
+      self.blocks.where(type: 'Solution')
+    end
+
+    def no_more_than_one_solution
+      unless solutions.length <= 1
+        errors.add(:level, "may not have more than one Solution")
+      end
     end
 end
