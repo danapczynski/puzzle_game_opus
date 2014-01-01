@@ -5,6 +5,7 @@ Opus::Application.routes.draw do
   resources :sessions, only: [:create, :new]
   resources :scores, only: [:create]
   resources :levels, only: [:show]
+  get '/about' => 'static_pages#about', as: :about
   match '/signout' => 'sessions#destroy'
 
   # The priority is based upon order of creation:
