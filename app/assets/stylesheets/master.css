@@ -204,3 +204,30 @@ input:focus {
   background-color: #222200;
   text-decoration: none;
 }
+
+/* ABOUT PAGE */
+
+#about_div h3 {
+  text-align: center;
+  width: 400px;
+  padding: 7px 0 7px 0;
+  margin: 0;
+  background-color: #222200;
+  color: #476200;
+}
+
+#about_div p {
+  margin: 23px 0;
+  font-size: 14pt;
+  line-height: 23px;
+}
+
+#about_div a {
+  color: #222200;
+}
+
+#about_div a:hover {
+  background-color: #222200;
+  color: #476200;
+  text-decoration: none;
+}
