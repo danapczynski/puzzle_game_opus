@@ -10,6 +10,7 @@ feature 'UsersController' do
       it 'should redirect to the main menu' do
         visit user_path(user)
         expect(page.body).to have_link("Create a New Account")
+        expect(page.body).to have_link("Load an Existing Account")
       end
     end
 
