@@ -114,9 +114,11 @@ var gameBlock = function(htmlObject){
     clickActivate: function() {
       var that = this
       filled.on('click', function(){
-        if (activeBlock[0]) { activeBlock[0].deactivate() }
-        that.activate()
-        activeBlock = [ that ]
+        if ($('.overlap').length === 0) {
+          if (activeBlock[0]) { activeBlock[0].deactivate() }
+          that.activate()
+          activeBlock = [ that ]
+        }
       })
     },
     isActive: function() {
