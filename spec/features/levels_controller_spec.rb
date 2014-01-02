@@ -2,15 +2,18 @@ require 'spec_helper'
 
 feature 'LevelsController' do
   let(:user)      { FactoryGirl.create(:user) }
-  let(:block)     { FactoryGirl.create(:block) }
+  let(:block)     { FactoryGirl.create(:block, nickname: 'submarine') }
   let(:solution1) { FactoryGirl.create(:solution, nickname: 'solution1') }
   let(:solution2) { FactoryGirl.create(:solution, nickname: 'solution2') }
+  let(:demo_sol)  { FactoryGirl.create(:solution, nickname: 'demo_solution') }
   let(:level1)    { FactoryGirl.create(:level, level_number: 1) }
   let(:level2)    { FactoryGirl.create(:level, level_number: 2) }
 
   describe '#show' do
     context 'when user is not logged in' do
       it 'redirects user to the main menu' do
+        block
+        demo_sol
         visit level_path(level1)
         expect(page.body).to have_link("Create a New Account")
         expect(page.body).to have_link("Load an Existing Account")

@@ -19,6 +19,7 @@ end
 
 class BlockSeed
   def self.populate
+    Solution.create(nickname: 'demo_solution')
     Block.create(nickname: 't_block')
     Block.create(nickname: 'submarine')
     Block.create(nickname: 'l_block')

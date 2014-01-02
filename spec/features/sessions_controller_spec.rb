@@ -4,9 +4,13 @@ feature 'SessionsController' do
 
   let(:user) { FactoryGirl.create(:user) }
   let(:new_user) { FactoryGirl.build(:user) }
+  let(:block) { FactoryGirl.create(:block, nickname: 'submarine') }
+  let(:solution) { FactoryGirl.create(:solution, nickname: 'demo_solution') }
 
   describe '#new' do
     before(:each) do
+      block
+      solution
       visit root_path
       click_link('Load an Existing Account')
     end
@@ -58,6 +62,8 @@ feature 'SessionsController' do
 
   describe '#destroy' do
     before(:each) do
+      block
+      solution
       visit root_path
       click_link('Load an Existing Account')
       fill_in 'Email', with: user.email

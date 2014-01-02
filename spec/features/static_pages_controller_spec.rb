@@ -2,9 +2,13 @@ require 'spec_helper'
 
 feature 'StaticPagesController' do
   let(:user) { FactoryGirl.create(:user) }
+  let(:block) { FactoryGirl.create(:block, nickname: 'submarine') }
+  let(:solution) { FactoryGirl.create(:solution, nickname: 'demo_solution') }
 
   describe '#index' do
     before(:each) do
+      block
+      solution
       visit root_path
     end
 
@@ -62,6 +66,8 @@ feature 'StaticPagesController' do
 
   describe 'About GameBoy Opus link' do
     before(:each) do
+      block
+      solution
       visit root_path
       click_link('About GameBoy Opus')
     end

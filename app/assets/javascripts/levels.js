@@ -1,5 +1,6 @@
 $(function() {
   armHelpButton()
+  startTimer()
   position_blocks()      // See level-specific JS file 
   position_solution()    // See level-specific JS file
   position_text()        // See level-specific JS file
@@ -8,9 +9,8 @@ $(function() {
   activeBehavior()       // See blocks.js
   clickObscuredObject()  // See blocks.js
   clickOffDeactivate()   // See blocks.js
-  startTimer()
-  resizableSolution() 
-  solutionRect = solutionLocation()
+  resizableSolution()    // See blocks.js
+  solutionRect = solutionLocation() // See blocks.js
 });
 
 // Game setup functions:
@@ -45,33 +45,16 @@ var stopTimer = function(){
   $('#current_seconds').attr('id', '')
 }
 
-var solutionLocation = function() {
-  var rect = []
-  var index = 0
-  var filled = $('#solution .filled')
-  filled.each(function(){
-    rect.push([$(this).offset().left, $(this).offset().top])
-  })
-  return rect
+var onVictory = function(){
+  activeBlock[0].deactivate()
+  $('#comp_time').val($('#current_seconds').text())
+  stopTimer()
+  $('#score_form form').submit()
+  $('#solution_text').html('')
+  $('#blocks_text').html('<h3>Congratulations!</h3>')
+  $('#next_level_link').show()
 }
 
-var resizableSolution = function() {
-  $(window).resize(function(){
-    solutionRect = solutionLocation()
-  })
-}
-
-var checkForVictory = function() {
-  if (($('#solution .filled').length === $('.game-block .fit').length) && $('.overlap').length === 0) {
-    activeBlock[0].deactivate()
-    $('#comp_time').val($('#current_seconds').text())
-    stopTimer()
-    $('#score_form form').submit()
-    $('#solution_text').html('')
-    $('#blocks_text').html('<h3>Congratulations!</h3>')
-    $('#next_level_link').show()
-  }
-}
 
 
 

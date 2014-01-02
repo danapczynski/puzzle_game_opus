@@ -44,6 +44,11 @@ var gameBlock = function(htmlObject){
         $(element).css(myTransformProperty, "scaleX(" + scaleX + ") rotate(" + (rotDeg * -1) + "deg)") 
       }
     },
+    resetFlipAndRotate: function(){
+      rotDeg = 0
+      scaleX = 1
+      this.set_flip_and_rotate()
+    },
     moveRight: function(){
       if (($('#main').offset().left + $('#main').innerWidth()) - ($(element).offset().left + $(element).outerWidth()) > 40) {
         $(element).animate({
@@ -227,6 +232,28 @@ var clickOffDeactivate = function() {
       activeBlock[0].deactivate() 
     }
   })
+}
+
+var solutionLocation = function() {
+  var rect = []
+  var index = 0
+  var filled = $('#solution .filled')
+  filled.each(function(){
+    rect.push([$(this).offset().left, $(this).offset().top])
+  })
+  return rect
+}
+
+var resizableSolution = function() {
+  $(window).resize(function(){
+    solutionRect = solutionLocation()
+  })
+}
+
+var checkForVictory = function() {
+  if (($('#solution .filled').length === $('.game-block .fit').length) && $('.overlap').length === 0) {
+    onVictory() 
+  }
 }
 
 Array.prototype.compare = function(arr) {

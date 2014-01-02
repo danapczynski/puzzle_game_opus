@@ -4,10 +4,14 @@ feature 'UsersController' do
   let(:user) { FactoryGirl.create(:user) }
   let(:new_user) { FactoryGirl.build(:user, name: 'Some_Other_Name') }
   let(:level) { FactoryGirl.create(:level) }
+  let(:block) { FactoryGirl.create(:block, nickname: 'submarine') }
+  let(:solution) { FactoryGirl.create(:solution, nickname: 'demo_solution') }
 
   describe '#show' do
     context 'when the user is not logged in' do
       it 'should redirect to the main menu' do
+        block
+        solution
         visit user_path(user)
         expect(page.body).to have_link("Create a New Account")
         expect(page.body).to have_link("Load an Existing Account")
@@ -72,6 +76,8 @@ feature 'UsersController' do
 
   describe '#new' do
     before(:each) do
+      block
+      solution
       visit root_path
       click_link('Create a New Account')
     end

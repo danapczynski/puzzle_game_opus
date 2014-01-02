@@ -1,3 +1,13 @@
 <h1 id='game-title'>GameBoy Opus</h1>
 
+<div id='demo'>
+  <p id='demo_text'>Click this block!</p>
+  <%= Block.find_by_nickname('submarine').read_shape %>
+</div>
+<div id='demo_solution'>
+  <%= Solution.find_by_nickname('demo_solution').read_shape %>
+</div>
 <%= render 'main_menu' %>
+
+<%= javascript_include_tag 'blocks' %>
+<%= javascript_include_tag 'demo' %>

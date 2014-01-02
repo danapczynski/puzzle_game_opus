@@ -102,9 +102,30 @@ body {
   font-weight: bold;
 }
 
-#main_menu, #main p {
+#main_menu {
   margin: 0 auto;
   width: 400px;
+}
+
+#main p {
+  margin: 0 auto;
+  width: 400px;
+}
+
+#demo, #demo_solution {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+#demo_text {
+  position: absolute;
+  left: 1%;
+  right: 1%;
 }
 
 .errors {
