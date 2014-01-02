@@ -55,11 +55,9 @@ var gameBlock = function(htmlObject){
     },
     set_flip_and_rotate: function(){
       if (scaleX > 0) {
-        console.log('if')
         $(element).css(myTransformProperty, "scaleX(" + scaleX + ") rotate(" + rotDeg + "deg)")
       }
       else {
-        console.log('else')
         $(element).css(myTransformProperty, "scaleX(" + scaleX + ") rotate(" + (rotDeg * -1) + "deg)") 
       }
     },
