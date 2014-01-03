@@ -16,7 +16,6 @@ $(function() {
 // Game setup functions:
 
 var armHelpButton = function(){
-  $('#help').hide()
   $('#help-button').on('click', function(e){
     e.preventDefault()
     if ($('#help').is(':hidden')) {
