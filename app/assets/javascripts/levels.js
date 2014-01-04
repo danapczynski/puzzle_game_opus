@@ -49,8 +49,8 @@ var onVictory = function(){
   $('#comp_time').val($('#current_seconds').text())
   stopTimer()
   $('#score_form form').submit()
-  $('#solution_text').html('')
-  $('#blocks_text').html('<h3>Congratulations!</h3>')
+  $('#solution_text').css('top', 110).html('<h3>Congratulations!</h3>')
+  $('#blocks_text').html('')
   $('#next_level_link').show()
 }
 
