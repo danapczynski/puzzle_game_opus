@@ -24,8 +24,8 @@ class User < ActiveRecord::Base
     Level.find_by_level_number(last_level_completed.level_number + 1)
   end
 
-  def available_levels
-    next_level ? levels.uniq + [next_level] : levels.uniq
+  def report_levels
+    levels.uniq
   end
 
   def best_score(level)
