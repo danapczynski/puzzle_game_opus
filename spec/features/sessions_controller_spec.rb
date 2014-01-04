@@ -6,6 +6,7 @@ feature 'SessionsController' do
   let(:new_user) { FactoryGirl.build(:user) }
   let(:block) { FactoryGirl.create(:block, nickname: 'submarine') }
   let(:solution) { FactoryGirl.create(:solution, nickname: 'demo_solution') }
+  let(:level1) { FactoryGirl.create(:level, level_number: 1, blocks: [solution]) }
 
   describe '#new' do
     before(:each) do
@@ -17,6 +18,7 @@ feature 'SessionsController' do
 
     context 'with form fields filled correctly' do
       before(:each) do
+        level1
         fill_in 'Email', with: user.email
         fill_in 'Password', with: user.password
         click_button('Done')
@@ -64,6 +66,7 @@ feature 'SessionsController' do
     before(:each) do
       block
       solution
+      level1
       visit root_path
       click_link('Load an Existing Account')
       fill_in 'Email', with: user.email

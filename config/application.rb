@@ -66,6 +66,7 @@ module Opus
     config.assets.precompile += ['forms.js']
     config.assets.precompile += ['blocks.js']
     config.assets.precompile += ['demo.js']
+    config.assets.precompile += ['level_select.js']
     config.assets.precompile += ['levels.js']
     config.assets.precompile += ['levels/*.js']
   end

@@ -3,9 +3,9 @@ require 'spec_helper'
 feature 'UsersController' do
   let(:user) { FactoryGirl.create(:user) }
   let(:new_user) { FactoryGirl.build(:user, name: 'Some_Other_Name') }
-  let(:level) { FactoryGirl.create(:level) }
   let(:block) { FactoryGirl.create(:block, nickname: 'submarine') }
   let(:solution) { FactoryGirl.create(:solution, nickname: 'demo_solution') }
+  let(:level) { FactoryGirl.create(:level, blocks: [block, solution]) }
 
   describe '#show' do
     context 'when the user is not logged in' do
@@ -20,6 +20,7 @@ feature 'UsersController' do
 
     context 'when the user is logged in' do
       before(:each) do
+        level
         login(user)
         visit user_path(user)
       end
@@ -84,6 +85,7 @@ feature 'UsersController' do
 
     context 'with fields filled correctly' do
       before(:each) do
+        level
         fill_in 'Name', with: new_user.name
         fill_in 'Email', with: new_user.email
         fill_in 'Password', with: new_user.password

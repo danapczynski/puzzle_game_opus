@@ -4,6 +4,7 @@ feature 'StaticPagesController' do
   let(:user) { FactoryGirl.create(:user) }
   let(:block) { FactoryGirl.create(:block, nickname: 'submarine') }
   let(:solution) { FactoryGirl.create(:solution, nickname: 'demo_solution') }
+  let(:level) { FactoryGirl.create(:level, blocks: [solution] )}
 
   describe '#index' do
     before(:each) do
@@ -57,6 +58,7 @@ feature 'StaticPagesController' do
 
     context 'when the user is logged in' do
       it 'redirects to Users#show' do
+        level
         login(user)
         visit root_path
         expect(page.body).to have_content("Welcome, #{user.name}!")

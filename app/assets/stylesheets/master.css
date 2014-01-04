@@ -100,6 +100,7 @@ body {
   text-align: center;
   font-size: 45pt;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
 #main_menu {
@@ -139,6 +140,10 @@ body {
   list-style: none;
   padding: 0;
   margin: 0 auto;
+}
+
+.hidden {
+  display: none;
 }
 
 /* FORMS */
@@ -220,7 +225,7 @@ input:focus {
   text-decoration: none;
 }
 
-.button:hover, .submit-button:hover{ 
+.button:hover, .submit-button:hover, .levels_nav:hover{ 
   color: #476200;
   background-color: #222200;
   text-decoration: none;
@@ -251,4 +256,60 @@ input:focus {
   background-color: #222200;
   color: #476200;
   text-decoration: none;
+}
+
+/* LEVEL SELECTION */
+
+.level_select_button {
+  width: 400px;
+  position: relative;
+  display: block;
+  height: 300px;
+  width: 400px;
+  margin: 10px auto;
+  border: 1px solid #222200;
+  background-color: none;
+  color: #222200;
+  line-height: 550px;
+  vertical-align: bottom;
+  text-align: center;
+  text-decoration: none;
+  /*z-index: 12;*/
+}
+
+.levels_nav {
+  display: inline-block;
+  height: 40px;
+  width: 195px;
+  border: 1px solid #222200;
+  background-color: #476200;
+  color: #222200;
+  line-height: 40px;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  margin: 0;
+}
+
+#levels_nav_container {
+  width: 402px;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.level_select_li table *, .level_select_li table {
+  pointer-events: none;
+}
+
+.level_select_button:hover{
+  background-color: #222200;
+  color: #476200;
+}
+
+#next {
+  right: 0;
+}
+
+#prev {
+  left: 0;
 }

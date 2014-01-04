@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
     Level.find_by_level_number(last_level_completed.level_number + 1)
   end
 
-  def report_levels
+  def unique_levels
     levels.uniq
   end
 

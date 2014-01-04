@@ -3,14 +3,29 @@
 
 <ul id='level_selection'>
   <% if @user.new_player? %>
-    <li><%= link_to 'Start a New Game', @user.next_level, class: 'button' %></li>
+    <li class='level_select_li'>
+      <%= @user.next_level.solution.read_shape %>
+      <%= link_to 'Start a New Game', @user.next_level, class: 'level_select_button' %>
+    </li>
   <% else %>
-    <% if @user.next_level %>
-      <li><%= link_to 'Continue Your Game!', @user.next_level, class: 'button' %></li>
+    <% @user.unique_levels.each do |level| %>
+      <li class='level_select_li'>
+        <%= level.solution.read_shape %>
+        <%= link_to "Level #{level.level_number}", level, class: 'level_select_button' %>
+      </li>
     <% end %>
-    <% @user.report_levels.each do |level| %>
-      <li><%= link_to "Level #{level.level_number}", level, class: 'button' %></li>
+    <% if @user.next_level %>
+      <li class='level_select_li'>
+        <%= @user.next_level.solution.read_shape %>
+        <%= link_to 'Continue Your Game!', @user.next_level, class: 'level_select_button' %>
+      </li>
     <% end %>
   <% end %>
+  <div id='levels_nav_container'>
+    <%= link_to "Previous Level", '/previous', id: 'prev', class: 'levels_nav' %>
+    <%= link_to "Next Level", '/next', id: 'next', class: 'levels_nav' %>
+  </div>
   <%= link_to "Sign Out", '/signout', :method => :delete, :id => 'signout', class: 'button' %>  
 </ul>
+
+<%= javascript_include_tag 'level_select' %>
