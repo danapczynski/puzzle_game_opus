@@ -44,6 +44,6 @@ var position_solution = function() {
 }
 
 var position_text = function() {
-  $('#solution_text').css('top', 110).append('<p>Some blocks create more problems than they solve.</p>')
-  $('#blocks_text').css('top', 520).css('left', 328).append('<p>Like this one.</p>')
+  $('#solution_text').css('top', 110).append('<p>What if a block was so symmetrical even God couldn\'t rotate it 90 deg?</p>')
+  $('#blocks_text').css('top', 520).css('left', 328).append('<p>Like this one!</p>')
 }
