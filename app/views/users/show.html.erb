@@ -8,7 +8,7 @@
     <% if @user.next_level %>
       <li><%= link_to 'Continue Your Game!', @user.next_level, class: 'button' %></li>
     <% end %>
-    <% @user.report_levels.each do |level| %>
+    <% @user.available_levels.each do |level| %>
       <li><%= link_to "Level #{level.level_number}", level, class: 'button' %></li>
     <% end %>
   <% end %>
