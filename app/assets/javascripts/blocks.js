@@ -137,6 +137,14 @@ var gameBlock = function(htmlObject){
         }
       })
     },
+    overlapStatus: function() {
+      if ($(element).find('.overlap').length > 0) {
+        return true
+      }
+      else { 
+        return false 
+      }
+    },
     compareSolution: function() {
       var rect = this.getRect()
       for (var x=0; x < rect.length; x++) {
@@ -166,13 +174,15 @@ var clickObscuredObject = function() {
   $('.empty').on('click', function(){
     var active = activeBlock[0]
     var position = [$(this).offset().left, $(this).offset().top]
-    $('.game-block .filled').each(function(){
-      if (position.compare([$(this).offset().left, $(this).offset().top])) {
-        this.click()
+    if (!active || active.overlapStatus() === false) {
+      $('.game-block .filled').each(function(){
+        if (position.compare([$(this).offset().left, $(this).offset().top])) {
+          this.click()
+        }
+      })
+      if (active === activeBlock[0]) {
+        active.deactivate()
       }
-    })
-    if (active === activeBlock[0]) {
-      active.deactivate()
     }
   })
 }
