@@ -40,7 +40,7 @@ once they begin a level.
 More Levels on the Way
 ----------------------
 
-To date, I've coded 6 levels into the playable game. The original game had considerably more (and more difficult) puzzles. Check back occasionally for more, and send me a shout if you'd like to be notified when levels are added.
+To date, I've coded 8 levels into the playable game. The original game had considerably more (and more difficult) puzzles. Check back occasionally for more, and send me a shout if you'd like to be notified when levels are added.
 
 All the best,<br>
 [Dan Apczynski](http://www.danapczynski.com)
