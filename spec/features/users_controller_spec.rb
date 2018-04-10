@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 feature 'UsersController' do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:new_user) { FactoryGirl.build(:user, name: 'Some_Other_Name') }
-  let(:block) { FactoryGirl.create(:block, nickname: 'submarine') }
-  let(:solution) { FactoryGirl.create(:solution, nickname: 'demo_solution') }
-  let(:level) { FactoryGirl.create(:level, blocks: [block, solution]) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:new_user) { FactoryBot.build(:user, name: 'Some_Other_Name') }
+  let(:block) { FactoryBot.create(:block, nickname: 'submarine') }
+  let(:solution) { FactoryBot.create(:solution, nickname: 'demo_solution') }
+  let(:level) { FactoryBot.create(:level, level_number: 1, blocks: [block, solution]) }
 
   describe '#show' do
     context 'when the user is not logged in' do
@@ -46,7 +46,7 @@ feature 'UsersController' do
 
       context 'when user has completed a level' do
         before(:each) do
-          FactoryGirl.create(:score, user: user, level: level)
+          FactoryBot.create(:score, user: user, level: level)
           visit user_path(user)
         end
 
@@ -56,12 +56,12 @@ feature 'UsersController' do
 
         context 'when there are additional levels that have not been completed' do
           before(:each) do
-            FactoryGirl.create(:level, level_number: 2, blocks: [FactoryGirl.create(:block), FactoryGirl.create(:solution)] )
+            FactoryBot.create(:level, level_number: 2, blocks: [FactoryBot.create(:block), FactoryBot.create(:solution)] )
             visit user_path(user)
           end
 
           it 'features a link to continue the game' do
-            expect(page.body).to have_link('Continue Your Game') 
+            expect(page.body).to have_link('Continue Your Game')
           end
 
           describe '"Continue Your Game" link' do
@@ -117,11 +117,11 @@ feature 'UsersController' do
         click_button('Done')
         expect(page.body).to have_content('Create a User')
       end
-         
+
       it 'displays the appropriate error message' do
         click_button('Done')
         expect(page.body).to have_content('Name can\'t be blank')
-      end 
+      end
     end
 
     context 'with email left blank' do
@@ -139,11 +139,11 @@ feature 'UsersController' do
         click_button('Done')
         expect(page.body).to have_content('Create a User')
       end
-         
+
       it 'displays the appropriate error message' do
         click_button('Done')
         expect(page.body).to have_content('Email can\'t be blank')
-      end 
+      end
     end
 
     context 'with password left blank' do
@@ -160,16 +160,16 @@ feature 'UsersController' do
         click_button('Done')
         expect(page.body).to have_content('Create a User')
       end
-         
+
       it 'displays the appropriate error message' do
         click_button('Done')
         expect(page.body).to have_content('Password can\'t be blank')
-      end 
+      end
     end
 
     context 'with email that already exists' do
       before(:each) do
-        FactoryGirl.create(:user, email: new_user.email)
+        FactoryBot.create(:user, email: new_user.email)
         fill_in 'Name', with: new_user.name
         fill_in 'Email', with: new_user.email
         fill_in 'Password', with: new_user.password
@@ -184,16 +184,16 @@ feature 'UsersController' do
         click_button('Done')
         expect(page.body).to have_content('Create a User')
       end
-         
+
       it 'displays the appropriate error message' do
         click_button('Done')
         expect(page.body).to have_content('Email has already been taken')
-      end 
+      end
     end
 
     context 'with improperly formatted email address' do
       before(:each) do
-        new_user = FactoryGirl.build(:user, email: 'not_an_email')
+        new_user = FactoryBot.build(:user, email: 'not_an_email')
         fill_in 'Name', with: new_user.name
         fill_in 'Email', with: new_user.email
         fill_in 'Password', with: new_user.password
@@ -208,11 +208,11 @@ feature 'UsersController' do
         click_button('Done')
         expect(page.body).to have_content('Create a User')
       end
-         
+
       it 'displays the appropriate error message' do
         click_button('Done')
         expect(page.body).to have_content('Email is not formatted correctly')
-      end 
+      end
     end
 
     context 'when password confirmation does not match' do
@@ -231,11 +231,11 @@ feature 'UsersController' do
         click_button('Done')
         expect(page.body).to have_content('Create a User')
       end
-         
+
       it 'displays the appropriate error message' do
         click_button('Done')
         expect(page.body).to have_content('Password doesn\'t match confirmation')
-      end 
+      end
     end
   end
 end

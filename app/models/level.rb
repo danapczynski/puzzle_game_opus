@@ -1,8 +1,7 @@
-class Level < ActiveRecord::Base
+class Level < ApplicationRecord
   has_many :scores
   has_many :users, through: :scores
   has_and_belongs_to_many :blocks
-  attr_accessible :level_number
   validates :level_number, presence: true, uniqueness: true
   validate :no_more_than_one_solution
 
@@ -10,10 +9,6 @@ class Level < ActiveRecord::Base
     nicknames_array.each do |nick|
       self.blocks << Block.find_by_nickname(nick)
     end
-  end
-
-  def to_param
-    level_number
   end
 
   def solution
@@ -30,13 +25,13 @@ class Level < ActiveRecord::Base
 
   private
 
-    def solutions
-      self.blocks.where(type: 'Solution')
-    end
+  def solutions
+    self.blocks.where(type: 'Solution')
+  end
 
-    def no_more_than_one_solution
-      unless solutions.length <= 1
-        errors.add(:level, "may not have more than one Solution")
-      end
+  def no_more_than_one_solution
+    unless solutions.length <= 1
+      errors.add(:level, "may not have more than one Solution")
     end
+  end
 end

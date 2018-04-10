@@ -2,11 +2,11 @@ require 'spec_helper'
 
 feature 'SessionsController' do
 
-  let(:user) { FactoryGirl.create(:user) }
-  let(:new_user) { FactoryGirl.build(:user) }
-  let(:block) { FactoryGirl.create(:block, nickname: 'submarine') }
-  let(:solution) { FactoryGirl.create(:solution, nickname: 'demo_solution') }
-  let(:level1) { FactoryGirl.create(:level, level_number: 1, blocks: [solution]) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:new_user) { FactoryBot.build(:user) }
+  let(:block) { FactoryBot.create(:block, nickname: 'submarine') }
+  let(:solution) { FactoryBot.create(:solution, nickname: 'demo_solution') }
+  let(:level1) { FactoryBot.create(:level, level_number: 1, blocks: [solution]) }
 
   describe '#new' do
     before(:each) do

@@ -1,19 +1,19 @@
 require 'spec_helper'
 
-describe Level do
+describe Level, type: :model do
   it { should have_many :scores }
   it { should have_many :users }
   it { should validate_presence_of :level_number }
   it { should validate_uniqueness_of :level_number }
   it { should have_and_belong_to_many :blocks }
-  
-  let(:level1)   { FactoryGirl.create(:level, level_number: 1, id: 1) }
-  let(:level2)   { FactoryGirl.create(:level, level_number: 2, id: 2) }
-  let(:user)     { FactoryGirl.create(:user) }
-  let(:block)    { FactoryGirl.create(:block) }
-  let(:block2)   { FactoryGirl.create(:block, nickname: 'l_block') }
-  let(:block3)   { FactoryGirl.create(:block, nickname: 'submarine') }
-  let(:solution) { FactoryGirl.create(:solution) }
+
+  let(:level1)   { FactoryBot.create(:level, level_number: 1, id: 1) }
+  let(:level2)   { FactoryBot.create(:level, level_number: 2, id: 2) }
+  let(:user)     { FactoryBot.create(:user) }
+  let(:block)    { FactoryBot.create(:block) }
+  let(:block2)   { FactoryBot.create(:block, nickname: 'l_block') }
+  let(:block3)   { FactoryBot.create(:block, nickname: 'submarine') }
+  let(:solution) { FactoryBot.create(:solution) }
 
   describe '#users' do
     context 'before being completed by any users' do
@@ -24,7 +24,7 @@ describe Level do
 
     context 'after being completed by a user' do
       before(:each) do
-        level1.scores << FactoryGirl.create(:score, user: user, level: level1)
+        level1.scores << FactoryBot.create(:score, user: user, level: level1)
       end
 
       it 'returns an array containing the user' do
@@ -33,7 +33,7 @@ describe Level do
 
       context '(several times)' do
         before(:each) do
-          10.times { level1.scores << FactoryGirl.create(:score, user_id: 1, level: level1) }
+          10.times { level1.scores << FactoryBot.create(:score, user_id: 1, level: level1) }
         end
 
         it 'should count that user only once' do
@@ -44,7 +44,7 @@ describe Level do
 
     context 'after being completed by different users' do
       before(:each) do
-        4.times { level1.scores << FactoryGirl.create(:score, level: level1) }
+        4.times { level1.scores << FactoryBot.create(:score, level: level1) }
       end
 
       it 'returns an array with length equal to the number of completing users' do
@@ -77,7 +77,7 @@ describe Level do
     end
 
     it 'raises an error if multiple solutions are added' do
-      level1.associate_blocks([FactoryGirl.create(:solution, nickname: 'solution2').nickname]) 
+      level1.associate_blocks([FactoryBot.create(:solution, nickname: 'solution2').nickname])
       expect{ level1.save! }.to raise_error
     end
   end

@@ -1,35 +1,36 @@
 source 'https://rubygems.org'
+ruby '2.5.1'
 
-gem 'rails', '3.2.11'
+gem 'rails', '5.2.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
+gem 'pg', "~> 0.21"
 gem 'validates_email_format_of'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails'
+  gem 'coffee-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier'
 end
 
 group :test, :development do
-  gem "rspec-rails", "~> 2.4"
-  gem "shoulda-matchers", "~> 2.4.0"
-  gem "factory_girl_rails"
-  gem "capybara", "~> 2.2.0"
-  gem 'debugger'
+  gem "rspec-rails"
+  gem "shoulda-matchers"
+  gem "factory_bot_rails"
+  gem "capybara"
+  gem "byebug"
 end
 
 gem 'jquery-rails'
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

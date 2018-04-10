@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe User do
+describe User, type: :model do
   it { should validate_presence_of :name }
   it { should validate_presence_of :email }
   it { should validate_presence_of :password }
   it { should have_many :scores }
   it { should have_many :levels }
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryBot.create(:user) }
 
   context 'when first initialized' do
     describe '#new_player?' do
@@ -25,7 +25,7 @@ describe User do
 
   context 'after completing a level' do
     before(:each) do
-      FactoryGirl.create(:score, user: user, level: (FactoryGirl.create(:level)))
+      FactoryBot.create(:score, user: user, level: (FactoryBot.create(:level)))
     end
 
     describe '#new_player?' do
@@ -46,7 +46,7 @@ describe User do
 
     describe '#next_level' do
       before(:each) do
-        FactoryGirl.create(:level, level_number: 2)
+        FactoryBot.create(:level, level_number: 2)
       end
 
       it 'should return a Level object' do

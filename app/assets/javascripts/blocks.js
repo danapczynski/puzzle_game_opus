@@ -41,7 +41,7 @@ var gameBlock = function(htmlObject){
         $(element).css(myTransformProperty, "scaleX(" + scaleX + ") rotate(" + rotDeg + "deg)")
       }
       else {
-        $(element).css(myTransformProperty, "scaleX(" + scaleX + ") rotate(" + (rotDeg * -1) + "deg)") 
+        $(element).css(myTransformProperty, "scaleX(" + scaleX + ") rotate(" + (rotDeg * -1) + "deg)")
       }
     },
     resetFlipAndRotate: function(){
@@ -126,7 +126,7 @@ var gameBlock = function(htmlObject){
       var inactive = []
       $('.inactive .filled').each(function(){
         inactive.push([$(this).offset().left, $(this).offset().top])
-      })      
+      })
       filled.each(function(){
         var that = $(this)
         var coordinates = [$(this).offset().left, $(this).offset().top]
@@ -141,8 +141,8 @@ var gameBlock = function(htmlObject){
       if ($(element).find('.overlap').length > 0) {
         return true
       }
-      else { 
-        return false 
+      else {
+        return false
       }
     },
     compareSolution: function() {
@@ -239,7 +239,7 @@ var clickOffDeactivate = function() {
   })
   $('#solution td').on('click', function(e){
     if (activeBlock[0]) {
-      activeBlock[0].deactivate() 
+      activeBlock[0].deactivate()
     }
   })
 }
@@ -262,7 +262,7 @@ var resizableSolution = function() {
 
 var checkForVictory = function() {
   if (($('#solution .filled').length === $('.game-block .fit').length) && $('.overlap').length === 0) {
-    onVictory() 
+    onVictory()
   }
 }
 
@@ -282,7 +282,7 @@ Array.prototype.compare = function(arr) {
   return true;
 }
 
-/* 
+/*
  * the setTranformProperty() function was borrowed from
  * Jakub Jankiewicz's JQuery CSS Rotate plugin, whose license
  * information can be found below.

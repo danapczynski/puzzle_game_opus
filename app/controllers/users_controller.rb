@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate
+  before_action :authenticate
 
   def new
     @user = User.new
@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     if @user.save
       login(@user)
       redirect_to @user
@@ -23,16 +23,20 @@ class UsersController < ApplicationController
 
   private
 
-    def authenticate
-      if params[:id]
-        begin
-          @user = User.find(params[:id])
-        rescue
-          @user = nil
-        end
-        unless logged_in? && current_user == @user
-          redirect_to root_path
-        end
+  def authenticate
+    if params[:id]
+      begin
+        @user = User.find(params[:id])
+      rescue
+        @user = nil
+      end
+      unless logged_in? && current_user == @user
+        redirect_to root_path
       end
     end
+  end
+
+  def user_params
+    params[:user].permit(:name, :email, :password)
+  end
 end

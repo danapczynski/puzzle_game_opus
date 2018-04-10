@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :email, :email_format => {:message => 'is not formatted correctly'}
@@ -7,8 +7,6 @@ class User < ActiveRecord::Base
   has_many  :levels, through: :scores
 
   has_secure_password
-
-  attr_accessible :name, :email, :password, :password_confirmation
 
   def new_player?
     levels.empty?
@@ -30,7 +28,7 @@ class User < ActiveRecord::Base
 
   def best_score(level)
     if levels.include?(level)
-      score = scores.where(level_id: level.id).min_by { |score| score.completion_time }.completion_time
+      score = scores.where(level_id: level.id).min_by(&:completion_time).completion_time
       score == 1 ? "#{score} sec" : "#{score} secs"
     else
       "N/A"

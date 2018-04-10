@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 feature 'StaticPagesController' do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:block) { FactoryGirl.create(:block, nickname: 'submarine') }
-  let(:solution) { FactoryGirl.create(:solution, nickname: 'demo_solution') }
-  let(:level) { FactoryGirl.create(:level, blocks: [solution] )}
+  let(:user) { FactoryBot.create(:user) }
+  let(:block) { FactoryBot.create(:block, nickname: 'submarine') }
+  let(:solution) { FactoryBot.create(:solution, nickname: 'demo_solution') }
+  let(:level) { FactoryBot.create(:level, blocks: [solution] )}
 
   describe '#index' do
     before(:each) do

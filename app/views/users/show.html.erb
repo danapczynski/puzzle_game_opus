@@ -25,7 +25,7 @@
     <%= link_to "Previous Level", '/previous', id: 'prev', class: 'levels_nav' %>
     <%= link_to "Next Level", '/next', id: 'next', class: 'levels_nav' %>
   </div>
-  <%= link_to "Sign Out", '/signout', :method => :delete, :id => 'signout', class: 'button' %>  
+  <%= link_to "Sign Out", signout_path, :id => 'signout', class: 'button' %>
 </ul>
 
 <%= javascript_include_tag 'level_select' %>

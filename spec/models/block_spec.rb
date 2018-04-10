@@ -1,22 +1,22 @@
 require 'spec_helper'
 
-describe Block do
+describe Block, type: :model do
   it { should have_and_belong_to_many :levels }
   it { should validate_presence_of :nickname }
   it { should validate_uniqueness_of :nickname }
   it { should validate_presence_of :shape }
 
-  let(:block) { FactoryGirl.create(:block, nickname: 't_block') }
+  let(:block) { FactoryBot.create(:block, nickname: 't_block') }
 
   context 'without a nickname that corresponds to a local html file' do
     it 'should not be valid' do
-      expect(FactoryGirl.build(:block, nickname: 'nonexistent')).not_to be_valid
+      expect(FactoryBot.build(:block, nickname: 'nonexistent')).not_to be_valid
     end
   end
 
   context 'with a nickname that corresponds to a local html file' do
     it 'should be valid' do
-      expect(FactoryGirl.build(:block, nickname: 't_block')).to be_valid
+      expect(FactoryBot.build(:block, nickname: 't_block')).to be_valid
     end
 
     describe '#shape' do
@@ -28,11 +28,11 @@ describe Block do
       end
     end
   end
-  
+
 end
 
 describe Solution do
-  let(:solution) { FactoryGirl.create(:solution) }
+  let(:solution) { FactoryBot.create(:solution) }
 
   it 'should inherit from Block' do
     expect(solution.class.superclass).to be Block

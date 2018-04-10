@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 feature 'LevelsController' do
-  let(:user)      { FactoryGirl.create(:user) }
-  let(:block)     { FactoryGirl.create(:block, nickname: 'submarine') }
-  let(:solution1) { FactoryGirl.create(:solution, nickname: 'solution1') }
-  let(:solution2) { FactoryGirl.create(:solution, nickname: 'solution2') }
-  let(:demo_sol)  { FactoryGirl.create(:solution, nickname: 'demo_solution') }
-  let(:level1)    { FactoryGirl.create(:level, level_number: 1) }
-  let(:level2)    { FactoryGirl.create(:level, level_number: 2) }
+  let(:user)      { FactoryBot.create(:user) }
+  let(:block)     { FactoryBot.create(:block, nickname: 'submarine') }
+  let(:solution1) { FactoryBot.create(:solution, nickname: 'solution1') }
+  let(:solution2) { FactoryBot.create(:solution, nickname: 'solution2') }
+  let(:demo_sol)  { FactoryBot.create(:solution, nickname: 'demo_solution') }
+  let(:level1)    { FactoryBot.create(:level, level_number: 1) }
+  let(:level2)    { FactoryBot.create(:level, level_number: 2) }
 
   describe '#show' do
     context 'when user is not logged in' do
@@ -35,7 +35,7 @@ feature 'LevelsController' do
 
       context 'when user has access to the level' do
         it 'displays the level' do
-          FactoryGirl.create(:score, level_id: level1.id, user_id: user.id)
+          FactoryBot.create(:score, level_id: level1.id, user_id: user.id)
           visit level_path(level2)
           expect(page.body).to have_content('Level 2')
           expect(page.body).to have_css('table#solution')
@@ -51,7 +51,7 @@ feature 'LevelsController' do
 
       context 'when level does not exist' do
         it 'redirects to user_path(user)' do
-          visit level_path(FactoryGirl.build(:level, level_number: 3))
+          visit level_path(FactoryBot.build(:level, level_number: 3))
           expect(page.body).to have_content("Welcome, #{user.name}!")
         end
       end
